@@ -12,6 +12,11 @@ type CreateZoomMeetingInput = {
   durationMinutes: number;
 };
 
+function toZoomStartTime(startTime: string) {
+  const hasTimezone = /(?:z|[+-]\d{2}:\d{2})$/i.test(startTime);
+  return hasTimezone ? new Date(startTime).toISOString() : startTime;
+}
+
 function getZoomConfig() {
   const accountId = process.env.ZOOM_ACCOUNT_ID;
   const clientId = process.env.ZOOM_CLIENT_ID;
@@ -71,7 +76,7 @@ export async function createZoomMeeting({
     body: JSON.stringify({
       topic,
       type: 2,
-      start_time: new Date(startTime).toISOString(),
+      start_time: toZoomStartTime(startTime),
       duration: durationMinutes,
       timezone: 'Asia/Taipei',
       settings: {

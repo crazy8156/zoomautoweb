@@ -1,11 +1,14 @@
 ﻿import Link from 'next/link';
 import { revalidatePath } from 'next/cache';
+import { requireAdminSession } from '../../lib/admin';
 import { Course, CourseSession, formatCurrency, formatDateTime } from '../../lib/domain';
 import { supabase } from '../../lib/supabase';
 import { createZoomMeeting } from '../../lib/zoom';
 
 async function createCourse(formData: FormData) {
   'use server';
+
+  await requireAdminSession();
 
   const title = String(formData.get('title') ?? '').trim();
   const description = String(formData.get('description') ?? '').trim();
@@ -33,6 +36,8 @@ async function createCourse(formData: FormData) {
 
 async function updateCourse(formData: FormData) {
   'use server';
+
+  await requireAdminSession();
 
   const id = String(formData.get('courseId') ?? '');
   const title = String(formData.get('title') ?? '').trim();
@@ -64,6 +69,8 @@ async function updateCourse(formData: FormData) {
 
 async function createZoomSession(formData: FormData) {
   'use server';
+
+  await requireAdminSession();
 
   const courseId = String(formData.get('courseId') ?? '');
   const courseTitle = String(formData.get('courseTitle') ?? 'Zoom 課程');
@@ -183,3 +190,4 @@ export default async function AdminCoursesPage() {
     </main>
   );
 }
+

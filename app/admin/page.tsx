@@ -19,7 +19,7 @@ export default async function AdminPage() {
           <p className='text-sm font-semibold text-emerald-700'>Admin</p>
           <h1 className='text-3xl font-bold'>老師後台</h1>
         </div>
-        <Link href='/' className='text-sm font-semibold underline'>前台</Link>
+        <div className='flex gap-3 text-sm font-semibold underline'><Link href='/'>前台</Link><a href='/admin/logout'>登出</a></div>
       </header>
 
       <div className='grid gap-4 md:grid-cols-3'>
@@ -42,3 +42,4 @@ export default async function AdminPage() {
     </main>
   );
 }
+

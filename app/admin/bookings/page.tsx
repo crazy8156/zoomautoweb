@@ -1,6 +1,55 @@
 import Link from 'next/link';
 import { supabase } from '../../lib/supabase';
 
+type BookingRow = {
+  id: string;
+  status: string;
+  student_id: string;
+  session: BookingSession | null;
+};
+
+type RawBookingRow = {
+  id: string;
+  status: string;
+  student_id: string;
+  course_sessions: BookingSession | BookingSession[] | null;
+};
+
+type BookingSession = {
+  start_time: string | null;
+  zoom_join_url: string | null;
+  courses: BookingCourse | BookingCourse[] | null;
+};
+
+type BookingCourse = {
+  title: string | null;
+};
+
+function firstItem<T>(value: T | T[] | null) {
+  return Array.isArray(value) ? value[0] ?? null : value;
+}
+
+function normalizeBooking(row: RawBookingRow): BookingRow {
+  return {
+    id: row.id,
+    status: row.status,
+    student_id: row.student_id,
+    session: firstItem(row.course_sessions),
+  };
+}
+
+function getCourseTitle(session: BookingSession | null) {
+  return firstItem(session?.courses ?? null)?.title ?? '未設定';
+}
+
+function getStartTime(session: BookingSession | null) {
+  return session?.start_time ?? '未設定';
+}
+
+function getZoomJoinUrl(session: BookingSession | null) {
+  return session?.zoom_join_url ?? null;
+}
+
 export default async function AdminBookingsPage() {
   const { data } = await supabase
     .from('bookings')
@@ -8,7 +57,7 @@ export default async function AdminBookingsPage() {
     .order('booked_at', { ascending: false })
     .limit(50);
 
-  const rows: any[] = data ?? [];
+  const rows = ((data ?? []) as unknown as RawBookingRow[]).map(normalizeBooking);
 
   return (
     <main className='mx-auto max-w-5xl p-6'>
@@ -20,14 +69,14 @@ export default async function AdminBookingsPage() {
       <div className='space-y-3'>
         {rows.map((b) => (
           <div key={b.id} className='rounded-xl border p-4'>
-            <p className='text-sm'>課程：{b.course_sessions?.courses?.title ?? '未設定'}</p>
+            <p className='text-sm'>課程：{getCourseTitle(b.session)}</p>
             <p className='text-sm'>學生：{b.student_id}</p>
-            <p className='text-sm'>上課時間：{b.course_sessions?.start_time ?? '未設定'}</p>
+            <p className='text-sm'>上課時間：{getStartTime(b.session)}</p>
             <p className='text-sm'>狀態：{b.status}</p>
             <p className='text-sm'>
               Zoom：
-              {b.course_sessions?.zoom_join_url ? (
-                <a href={b.course_sessions.zoom_join_url} target='_blank' rel='noreferrer' className='underline'>
+              {getZoomJoinUrl(b.session) ? (
+                <a href={getZoomJoinUrl(b.session) ?? ''} target='_blank' rel='noreferrer' className='underline'>
                   進入課程
                 </a>
               ) : (

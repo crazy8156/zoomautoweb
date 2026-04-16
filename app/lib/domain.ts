@@ -1,6 +1,4 @@
-﻿import { createHash } from 'crypto';
-
-export type Course = {
+﻿export type Course = {
   id: string;
   title: string;
   description: string | null;
@@ -17,7 +15,7 @@ export type CourseSession = {
   start_time: string;
   zoom_join_url: string | null;
   zoom_meeting_id?: string | number | null;
-  courses?: Pick<Course, 'title' | 'duration_minutes' | 'price'> | Pick<Course, 'title' | 'duration_minutes' | 'price'>[] | null;
+  courses?: Pick<Course, 'title' | 'duration_minutes' | 'price' | 'max_students'> | Pick<Course, 'title' | 'duration_minutes' | 'price' | 'max_students'>[] | null;
 };
 
 export type Booking = {
@@ -51,9 +49,4 @@ export function formatCurrency(value: number | null | undefined) {
     maximumFractionDigits: 0,
     style: 'currency',
   }).format(value ?? 0);
-}
-
-export function uuidFromEmail(email: string) {
-  const hash = createHash('sha256').update(email.trim().toLowerCase()).digest('hex');
-  return `${hash.slice(0, 8)}-${hash.slice(8, 12)}-4${hash.slice(13, 16)}-a${hash.slice(17, 20)}-${hash.slice(20, 32)}`;
 }

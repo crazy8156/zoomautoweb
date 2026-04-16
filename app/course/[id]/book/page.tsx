@@ -1,32 +1,73 @@
 ﻿import Link from 'next/link';
-import { randomUUID } from 'crypto';
 import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { Course, CourseSession, firstItem, formatCurrency, formatDateTime, uuidFromEmail } from '../../../lib/domain';
+import { Course, CourseSession, firstItem, formatCurrency, formatDateTime } from '../../../lib/domain';
 import { supabase } from '../../../lib/supabase';
+import {
+  createStudentAccessToken,
+  createStudentId,
+  studentCookieOptions,
+  STUDENT_COOKIE_NAME,
+  verifyStudentAccessToken,
+} from '../../../lib/student-access';
 
 async function createBooking(formData: FormData) {
   'use server';
 
   const sessionId = String(formData.get('sessionId') ?? '');
-  const email = String(formData.get('email') ?? '').trim().toLowerCase();
-  const explicitStudentId = String(formData.get('studentId') ?? '').trim();
-  const studentId = explicitStudentId || (email ? uuidFromEmail(email) : randomUUID());
-
   if (!sessionId) throw new Error('找不到可預約場次。');
 
-  const { error } = await supabase.from('bookings').insert({
-    session_id: sessionId,
-    student_id: studentId,
-    status: 'confirmed',
-  });
+  const cookieStore = await cookies();
+  const studentId = verifyStudentAccessToken(cookieStore.get(STUDENT_COOKIE_NAME)?.value) ?? createStudentId();
 
-  if (error) {
-    throw new Error(`預約失敗：${error.message}`);
+  const { data: session, error: sessionError } = await supabase
+    .from('course_sessions')
+    .select('id,course_id,start_time,courses:course_id(id,title,max_students)')
+    .eq('id', sessionId)
+    .maybeSingle();
+
+  if (sessionError) throw new Error(`查詢場次失敗：${sessionError.message}`);
+  if (!session) throw new Error('找不到對應的課程場次。');
+
+  const course = firstItem(
+    session.courses as
+      | { id: string; title: string; max_students: number }
+      | { id: string; title: string; max_students: number }[]
+      | null,
+  );
+  const maxStudents = course?.max_students ?? 1;
+
+  const { count, error: countError } = await supabase
+    .from('bookings')
+    .select('*', { count: 'exact', head: true })
+    .eq('session_id', sessionId);
+
+  if (countError) throw new Error(`查詢場次名額失敗：${countError.message}`);
+  if ((count ?? 0) >= maxStudents) throw new Error('這個場次已滿額，請選擇其他上課時間。');
+
+  const { data: existingBooking, error: existingBookingError } = await supabase
+    .from('bookings')
+    .select('id')
+    .eq('session_id', sessionId)
+    .eq('student_id', studentId)
+    .maybeSingle();
+
+  if (existingBookingError) throw new Error(`查詢既有預約失敗：${existingBookingError.message}`);
+
+  if (!existingBooking?.id) {
+    const { error } = await supabase.from('bookings').insert({
+      session_id: sessionId,
+      student_id: studentId,
+      status: 'confirmed',
+    });
+
+    if (error) throw new Error(`預約失敗：${error.message}`);
   }
 
+  cookieStore.set(STUDENT_COOKIE_NAME, createStudentAccessToken(studentId), studentCookieOptions());
   revalidatePath('/my-bookings');
-  redirect(`/my-bookings?studentId=${encodeURIComponent(studentId)}`);
+  redirect('/my-bookings');
 }
 
 export default async function BookCoursePage({
@@ -47,7 +88,7 @@ export default async function BookCoursePage({
 
   const { data: sessions } = await supabase
     .from('course_sessions')
-    .select('id,course_id,start_time,zoom_join_url,courses:course_id(title,duration_minutes,price)')
+    .select('id,course_id,start_time,zoom_join_url,courses:course_id(title,duration_minutes,price,max_students)')
     .eq('course_id', id)
     .order('start_time', { ascending: true });
 
@@ -72,19 +113,9 @@ export default async function BookCoursePage({
         {selectedSession ? (
           <form action={createBooking} className='mt-6 space-y-4'>
             <input type='hidden' name='sessionId' value={selectedSession.id} />
-            <label className='block text-sm font-semibold'>
-              Email
-              <input
-                className='mt-1 block w-full rounded border px-3 py-2 font-normal'
-                name='email'
-                placeholder='student@example.com'
-                type='email'
-              />
-            </label>
-            <label className='block text-sm font-semibold'>
-              已有學生 UUID 可填，沒有可留空
-              <input className='mt-1 block w-full rounded border px-3 py-2 font-normal' name='studentId' placeholder='留空會自動產生查詢用 ID' />
-            </label>
+            <div className='rounded border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-6 text-emerald-900'>
+              預約成功後，這個瀏覽器會自動保存您的學生入口。之後可直接從「我的課程」查看 Zoom 上課連結。
+            </div>
             <button className='rounded bg-slate-950 px-4 py-2 text-sm font-semibold text-white'>確認預約</button>
           </form>
         ) : (

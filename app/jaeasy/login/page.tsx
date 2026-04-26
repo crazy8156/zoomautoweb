@@ -20,11 +20,11 @@ function normalizeAuthMessage(message: string) {
   const normalized = message.toLowerCase();
 
   if (normalized.includes('already been registered')) {
-    return '這個 Email 已經註冊過，請直接登入。';
+    return '這個電子郵件已經註冊過，請直接登入。';
   }
 
   if (normalized.includes('invalid login credentials')) {
-    return '登入失敗，請確認 Email 與密碼是否正確。';
+    return '登入失敗，請確認電子郵件與密碼是否正確。';
   }
 
   if (normalized.includes('password')) {
@@ -95,7 +95,7 @@ async function smartAuthAction(formData: FormData) {
   const nextPath = normalizeNextPath(getSingleValue(formData.get('next')));
 
   if (!email || !password) {
-    redirect(buildLoginPath('smart', { error: '請輸入 Email 與密碼。', next: nextPath }));
+    redirect(buildLoginPath('smart', { error: '請輸入電子郵件與密碼。', next: nextPath }));
   }
 
   const exists = await hasJaeasyAccount(email);
@@ -104,7 +104,7 @@ async function smartAuthAction(formData: FormData) {
     redirect(
       buildLoginPath('register', {
         email,
-        info: '這個 Email 還沒有會員資料，請先建立帳號。',
+        info: '這個電子郵件尚未註冊，請先建立 Jaeasy 會員帳號。',
         next: nextPath,
       }),
     );
@@ -133,7 +133,7 @@ async function registerAction(formData: FormData) {
   const nextPath = normalizeNextPath(getSingleValue(formData.get('next')));
 
   if (!fullName || !email || !password) {
-    redirect(buildLoginPath('register', { email, error: '請完整填寫姓名、Email 與密碼。', next: nextPath }));
+    redirect(buildLoginPath('register', { email, error: '請完整填寫姓名、電子郵件與密碼。', next: nextPath }));
   }
 
   let session;
@@ -159,7 +159,7 @@ async function loginAction(formData: FormData) {
   const nextPath = normalizeNextPath(getSingleValue(formData.get('next')));
 
   if (!email || !password) {
-    redirect(buildLoginPath('forgot', { email, error: '請輸入 Email 與密碼。', next: nextPath, showForgot: true }));
+    redirect(buildLoginPath('forgot', { email, error: '請輸入電子郵件與密碼。', next: nextPath, showForgot: true }));
   }
 
   let session;
@@ -183,7 +183,7 @@ async function forgotPasswordAction(formData: FormData) {
   const nextPath = normalizeNextPath(getSingleValue(formData.get('next')));
 
   if (!email) {
-    redirect(buildLoginPath('forgot', { error: '請輸入要重設密碼的 Email。', next: nextPath, showForgot: true }));
+    redirect(buildLoginPath('forgot', { error: '請先輸入要重設的電子郵件。', next: nextPath, showForgot: true }));
   }
 
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
@@ -206,7 +206,7 @@ async function forgotPasswordAction(formData: FormData) {
   redirect(
     buildLoginPath('forgot', {
       email,
-      info: '重設密碼信已寄出，請到信箱收信並依照指示操作。',
+      info: '密碼重設信已寄出，請到您的信箱收信並依照步驟完成設定。',
       next: nextPath,
       showForgot: true,
     }),
@@ -246,14 +246,14 @@ function LoginShell({
 
           <div className='mt-10 grid gap-4 sm:grid-cols-2'>
             <div className='rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5'>
-              <p className='text-xs font-black uppercase tracking-[0.14em] text-slate-400'>快速登入</p>
-              <p className='mt-3 text-lg font-black tracking-tight text-slate-950'>同一頁完成登入或註冊</p>
-              <p className='mt-2 text-sm leading-7 text-slate-600'>輸入 Email 與密碼後，系統會自動判斷你是要登入還是建立帳號。</p>
+              <p className='text-xs font-black uppercase tracking-[0.14em] text-slate-400'>登入方式</p>
+              <p className='mt-3 text-lg font-black tracking-tight text-slate-950'>用同一組帳密快速進入</p>
+              <p className='mt-2 text-sm leading-7 text-slate-600'>輸入您的電子郵件與密碼，系統會自動判斷要登入還是引導建立帳號。</p>
             </div>
             <div className='rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5'>
-              <p className='text-xs font-black uppercase tracking-[0.14em] text-slate-400'>安全登入</p>
-              <p className='mt-3 text-lg font-black tracking-tight text-slate-950'>支援密碼重設</p>
-              <p className='mt-2 text-sm leading-7 text-slate-600'>若忘記密碼，可直接寄送重設信，重新設定後再回來登入。</p>
+              <p className='text-xs font-black uppercase tracking-[0.14em] text-slate-400'>密碼協助</p>
+              <p className='mt-3 text-lg font-black tracking-tight text-slate-950'>忘記密碼也能重設</p>
+              <p className='mt-2 text-sm leading-7 text-slate-600'>如果忘記密碼，可以直接從這頁送出重設申請，信件會寄到您的電子郵件信箱。</p>
             </div>
           </div>
         </article>
@@ -261,7 +261,7 @@ function LoginShell({
         <article className='rounded-[2rem] border border-slate-200/70 bg-white p-8 shadow-[0_18px_48px_rgba(0,63,135,0.10)] md:p-10'>
           <div className='flex items-center justify-between gap-3'>
             <div>
-              <p className='text-xs font-black uppercase tracking-[0.16em] text-slate-400'>帳號入口</p>
+              <p className='text-xs font-black uppercase tracking-[0.16em] text-slate-400'>會員入口</p>
               <h2 className='mt-2 text-3xl font-black tracking-tight text-slate-950'>{title}</h2>
             </div>
             <Link href='/' className='rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50'>
@@ -306,28 +306,28 @@ export default async function JaeasyLoginPage({
 
   return (
     <LoginShell
-      badge='學生登入'
+      badge='會員登入'
       kicker='Jaeasy 會員入口'
       title='登入學習平台'
-      description='輸入 Email 與密碼後，系統會自動帶你進入學生中心或協助你建立新帳號。'
+      description='輸入您的電子郵件與密碼後，就能進入 Jaeasy 自學區、學生中心與課程安排頁面。'
       error={error}
       info={info}
     >
       {currentMode === 'smart' ? (
         <>
-          <p className='text-sm font-black uppercase tracking-[0.16em] text-[#115cb9]'>快速開始</p>
-          <h3 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>輸入帳號與密碼</h3>
-          <p className='mt-3 text-sm leading-7 text-slate-600'>如果你的 Email 已註冊，系統會直接登入；如果還沒有資料，會引導你建立帳號。</p>
+          <p className='text-sm font-black uppercase tracking-[0.16em] text-[#115cb9]'>快速登入流程</p>
+          <h3 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>先輸入帳號與密碼</h3>
+          <p className='mt-3 text-sm leading-7 text-slate-600'>系統會先確認這個電子郵件是否已註冊，若尚未建立帳號，會直接帶您進入註冊流程。</p>
 
           <form action={smartAuthAction} className='mt-6 grid gap-4'>
             <input type='hidden' name='next' value={nextPath} />
             <label className='text-sm font-semibold text-slate-700'>
-              Email
+              電子郵件
               <input
                 className='mt-2 block w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-normal shadow-sm'
                 defaultValue={initialEmail ?? ''}
                 name='email'
-                placeholder='請輸入你的 Email'
+                placeholder='請輸入您的電子郵件'
                 required
                 type='email'
               />
@@ -350,9 +350,9 @@ export default async function JaeasyLoginPage({
 
       {currentMode === 'register' ? (
         <>
-          <p className='text-sm font-black uppercase tracking-[0.16em] text-[#115cb9]'>建立帳號</p>
+          <p className='text-sm font-black uppercase tracking-[0.16em] text-[#115cb9]'>建立新帳號</p>
           <h3 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>第一次使用請先註冊</h3>
-          <p className='mt-3 text-sm leading-7 text-slate-600'>填寫姓名、Email 與密碼後，就能建立你的 Jaeasy 學習帳號。</p>
+          <p className='mt-3 text-sm leading-7 text-slate-600'>填寫姓名、電子郵件與密碼後，即可建立您的 Jaeasy 會員帳號。</p>
 
           <form action={registerAction} className='mt-6 grid gap-4'>
             <input type='hidden' name='next' value={nextPath} />
@@ -361,17 +361,17 @@ export default async function JaeasyLoginPage({
               <input
                 className='mt-2 block w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-normal shadow-sm'
                 name='fullName'
-                placeholder='請輸入你的姓名'
+                placeholder='請輸入您的姓名'
                 required
               />
             </label>
             <label className='text-sm font-semibold text-slate-700'>
-              Email
+              電子郵件
               <input
                 className='mt-2 block w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-normal shadow-sm'
                 defaultValue={initialEmail ?? ''}
                 name='email'
-                placeholder='請輸入你的 Email'
+                placeholder='請輸入您的電子郵件'
                 required
                 type='email'
               />
@@ -395,7 +395,7 @@ export default async function JaeasyLoginPage({
                 href={buildLoginPath('smart', { email: initialEmail ?? '', next: nextPath })}
                 className='rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50'
               >
-                回快速登入
+                回上一頁
               </Link>
             </div>
           </form>
@@ -405,18 +405,18 @@ export default async function JaeasyLoginPage({
       {currentMode === 'login' || currentMode === 'forgot' ? (
         <>
           <p className='text-sm font-black uppercase tracking-[0.16em] text-[#115cb9]'>會員登入</p>
-          <h3 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>使用既有帳號登入</h3>
-          <p className='mt-3 text-sm leading-7 text-slate-600'>如果這個 Email 已經註冊過，請直接輸入密碼登入；若忘記密碼，可在下方寄送重設信。</p>
+          <h3 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>用既有帳號登入</h3>
+          <p className='mt-3 text-sm leading-7 text-slate-600'>如果這個電子郵件已經註冊過，請直接輸入密碼登入；若忘記密碼，也可以在下方送出重設申請。</p>
 
           <form action={loginAction} className='mt-6 grid gap-4'>
             <input type='hidden' name='next' value={nextPath} />
             <label className='text-sm font-semibold text-slate-700'>
-              Email
+              電子郵件
               <input
                 className='mt-2 block w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-normal shadow-sm'
                 defaultValue={initialEmail ?? ''}
                 name='email'
-                placeholder='請輸入你的 Email'
+                placeholder='請輸入您的電子郵件'
                 required
                 type='email'
               />
@@ -432,13 +432,13 @@ export default async function JaeasyLoginPage({
             </label>
             <div className='flex flex-wrap gap-3'>
               <button className='rounded-full bg-[#003f87] px-5 py-3 text-sm font-bold text-white transition-transform hover:-translate-y-0.5'>
-                立即登入
+                直接登入
               </button>
               <Link
                 href={buildLoginPath('smart', { email: initialEmail ?? '', next: nextPath })}
                 className='rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50'
               >
-                回快速登入
+                回上一頁
               </Link>
             </div>
           </form>
@@ -447,14 +447,14 @@ export default async function JaeasyLoginPage({
             <div className='mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5'>
               <p className='text-sm font-black uppercase tracking-[0.16em] text-[#115cb9]'>忘記密碼</p>
               <h4 className='mt-2 text-xl font-black tracking-tight text-slate-950'>寄送重設信</h4>
-              <p className='mt-2 text-sm leading-7 text-slate-600'>輸入 Email 後，系統會寄送密碼重設信到你的信箱。</p>
+              <p className='mt-2 text-sm leading-7 text-slate-600'>輸入電子郵件後，系統會將重設密碼的連結寄到您的信箱。</p>
               <form action={forgotPasswordAction} className='mt-4 grid gap-3'>
                 <input type='hidden' name='next' value={nextPath} />
                 <input
                   className='block w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm shadow-sm'
                   defaultValue={initialEmail ?? ''}
                   name='email'
-                  placeholder='請輸入你的 Email'
+                  placeholder='請輸入您的電子郵件'
                   type='email'
                 />
                 <button className='rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100'>

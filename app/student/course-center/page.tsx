@@ -59,9 +59,9 @@ export default async function StudentCourseCenterPage() {
           <div className='flex flex-wrap items-center justify-between gap-4'>
             <div>
               <p className='text-sm font-black uppercase tracking-[0.2em] text-sky-700'>學生課程中心</p>
-              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>課程中心</h1>
+              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>課程與上課入口</h1>
               <p className='mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg'>
-                這裡專門承接學生的 Zoom 課程、可預約班級與我的上課入口，和自學中心分開管理。
+                這裡會整理您目前已預約的課程、對應的 Zoom 連結，以及可繼續預約的新課程。
               </p>
             </div>
             <div className='flex flex-wrap gap-3'>
@@ -75,13 +75,13 @@ export default async function StudentCourseCenterPage() {
                 href='/my-bookings'
                 className='rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5'
               >
-                我的課程
+                查看我的預約
               </Link>
             </div>
           </div>
           <div className='mt-8 grid gap-4 md:grid-cols-3'>
-            <MetricCard label='學生會員' value={member.fullName || session.fullName || member.email} />
-            <MetricCard label='已記錄課程' value={`${bookings.length} 筆`} />
+            <MetricCard label='目前會員' value={member.fullName || session.fullName || member.email} />
+            <MetricCard label='已建立課程入口' value={`${bookings.length} 筆`} />
             <MetricCard label='可預約課程' value={`${liveCourses.length} 門`} />
           </div>
         </header>
@@ -92,10 +92,10 @@ export default async function StudentCourseCenterPage() {
               <div className='flex flex-wrap items-center justify-between gap-3'>
                 <div>
                   <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>我的 Zoom 課程</p>
-                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>我的課程入口</h2>
+                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>已預約的上課入口</h2>
                 </div>
                 <Link href='/my-bookings' className='text-sm font-bold text-sky-700 underline underline-offset-4'>
-                  打開完整清單
+                  查看完整清單
                 </Link>
               </div>
               <div className='mt-6 grid gap-4'>
@@ -111,7 +111,7 @@ export default async function StudentCourseCenterPage() {
                       <article key={booking.id} className='rounded-3xl bg-slate-50 p-5'>
                         <div className='flex flex-wrap items-start justify-between gap-4'>
                           <div>
-                            <p className='text-lg font-black tracking-tight text-slate-950'>{course?.title ?? '未設定課程'}</p>
+                            <p className='text-lg font-black tracking-tight text-slate-950'>{course?.title ?? '未命名課程'}</p>
                             <p className='mt-2 text-sm leading-7 text-slate-600'>上課時間：{formatDateTime(sessionRow?.start_time)}</p>
                             <p className='text-sm leading-7 text-slate-600'>預約狀態：{formatBookingStatus(booking.status)}</p>
                             <p className='text-sm leading-7 text-slate-600'>
@@ -128,7 +128,7 @@ export default async function StudentCourseCenterPage() {
                               進入 Zoom 教室
                             </a>
                           ) : (
-                            <span className='rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600'>尚未建立上課連結</span>
+                            <span className='rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600'>尚未建立 Zoom 連結</span>
                           )}
                         </div>
                       </article>
@@ -136,7 +136,7 @@ export default async function StudentCourseCenterPage() {
                   })
                 ) : (
                   <div className='rounded-3xl border border-dashed border-slate-200 px-5 py-6 text-sm leading-7 text-slate-600'>
-                    目前這個裝置還沒有課程紀錄。學生可以先從下面的可預約課程開始，完成第一筆預約後，這裡就會出現上課入口。
+                    目前還沒有已建立的上課入口。完成第一筆預約後，這裡就會自動出現您的 Zoom 課程連結。
                   </div>
                 )}
               </div>
@@ -145,11 +145,11 @@ export default async function StudentCourseCenterPage() {
             <article className='rounded-[2rem] border border-white/70 bg-white/84 p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
               <div className='flex flex-wrap items-center justify-between gap-3'>
                 <div>
-                  <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>開放課程</p>
-                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>可預約課程</h2>
+                  <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>可預約課程</p>
+                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>繼續安排你的學習</h2>
                 </div>
                 <Link href='/student' className='text-sm font-bold text-sky-700 underline underline-offset-4'>
-                  回學生中心
+                  回學習總覽
                 </Link>
               </div>
               <div className='mt-6 grid gap-4'>
@@ -160,7 +160,7 @@ export default async function StudentCourseCenterPage() {
                         <div>
                           <p className='text-xl font-black tracking-tight text-slate-950'>{course.title}</p>
                           <p className='mt-2 text-sm leading-7 text-slate-600'>
-                            {course.description ?? '這堂課已建立基本資訊，後續可再補完整介紹。'}
+                            {course.description ?? '這門課程目前尚未提供課程說明，您可以先查看詳情頁了解安排。'}
                           </p>
                         </div>
                         <span className='rounded-full bg-sky-100 px-3 py-1 text-sm font-bold text-sky-700'>
@@ -168,8 +168,8 @@ export default async function StudentCourseCenterPage() {
                         </span>
                       </div>
                       <div className='mt-5 flex flex-wrap gap-3 text-sm text-slate-600'>
-                        <span className='rounded-full bg-slate-100 px-3 py-2'>單堂 {course.duration_minutes ?? 60} 分鐘</span>
-                        <span className='rounded-full bg-slate-100 px-3 py-2'>上限 {course.max_students} 人</span>
+                        <span className='rounded-full bg-slate-100 px-3 py-2'>時長 {course.duration_minutes ?? 60} 分鐘</span>
+                        <span className='rounded-full bg-slate-100 px-3 py-2'>名額 {course.max_students} 人</span>
                       </div>
                       <div className='mt-5 flex flex-wrap gap-3'>
                         <Link
@@ -182,14 +182,14 @@ export default async function StudentCourseCenterPage() {
                           href={`/course/${course.id}/book`}
                           className='inline-flex rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-50'
                         >
-                          直接預約
+                          立即預約
                         </Link>
                       </div>
                     </article>
                   ))
                 ) : (
                   <div className='rounded-3xl border border-dashed border-slate-200 px-5 py-6 text-sm leading-7 text-slate-600'>
-                    目前還沒有啟用中的直播課程，老師在後台新增後，這裡會自動顯示。
+                    目前沒有開放中的課程。之後有新課程上架時，這裡會直接顯示可預約內容。
                   </div>
                 )}
               </div>
@@ -197,16 +197,16 @@ export default async function StudentCourseCenterPage() {
           </div>
 
           <aside className='rounded-[2rem] bg-[linear-gradient(180deg,#0f172a_0%,#1d4ed8_100%)] p-7 text-white shadow-[0_28px_70px_rgba(15,23,42,0.24)]'>
-            <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>學生學習路徑</p>
-            <h2 className='mt-4 text-2xl font-black tracking-tight'>學生端現在分成兩個中心</h2>
+            <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>使用提醒</p>
+            <h2 className='mt-4 text-2xl font-black tracking-tight'>上課前先做這兩件事</h2>
             <div className='mt-6 grid gap-3 text-sm leading-7 text-sky-50/92'>
               <div className='rounded-3xl border border-white/12 bg-white/10 p-4'>
-                <p className='font-black text-white'>自學中心</p>
-                <p className='mt-2'>單字複習、測驗、進度追蹤。</p>
+                <p className='font-black text-white'>先確認設備</p>
+                <p className='mt-2'>上課前先檢查麥克風、耳機與網路，避免進教室後才臨時處理。</p>
               </div>
               <div className='rounded-3xl border border-white/12 bg-white/10 p-4'>
-                <p className='font-black text-white'>課程中心</p>
-                <p className='mt-2'>Zoom 課程、我的課程與上課入口。</p>
+                <p className='font-black text-white'>提前打開連結</p>
+                <p className='mt-2'>建議至少提早 5 分鐘進入 Zoom，讓課程可以準時開始。</p>
               </div>
             </div>
           </aside>

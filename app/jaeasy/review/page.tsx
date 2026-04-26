@@ -60,40 +60,40 @@ export default async function JaeasyReviewPage({
         <header className='rounded-[2rem] border border-white/70 bg-white/90 p-8 shadow-[0_30px_80px_rgba(15,23,42,0.10)] md:p-12'>
           <div className='flex flex-wrap items-center justify-between gap-4'>
             <div>
-              <p className='text-sm font-black uppercase tracking-[0.22em] text-sky-700'>複習流程</p>
-              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>今日複習隊列</h1>
+              <p className='text-sm font-black uppercase tracking-[0.22em] text-sky-700'>複習系統</p>
+              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>今日單字複習</h1>
             </div>
             <div className='flex flex-wrap gap-3'>
               <Link
                 href='/jaeasy'
                 className='rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50'
               >
-                回會員中心
+                回 Jaeasy
               </Link>
               <Link
                 href='/jaeasy/quiz?level=N5&type=vocab'
                 className='rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5'
               >
-                改做測驗
+                去做測驗
               </Link>
             </div>
           </div>
 
           <p className='mt-6 max-w-3xl text-base leading-8 text-slate-600 md:text-lg'>
-            每張卡片都可以直接評分。`0` 代表完全忘記，`5` 代表非常熟悉；送出後系統會依照 SM-2 規則自動安排下一次複習時間。
+            請依照熟悉程度為每個單字打分。`0` 代表完全不熟，`5` 代表非常熟悉。系統會依照您的評分自動調整下次複習時間。
           </p>
 
           {graded ? (
             <div className='mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-700'>
-              複習結果已保存，排程也更新好了。
+              已更新這個單字的複習結果，系統會重新安排下次複習時間。
             </div>
           ) : null}
 
           <div className='mt-8 grid gap-4 md:grid-cols-4'>
-            <MetricCard label='今日待複習' value={`${summary.dueCount}`} />
-            <MetricCard label='今日已更新' value={`${summary.reviewedToday}`} />
-            <MetricCard label='已追蹤單字' value={`${summary.trackedVocabulary}`} />
-            <MetricCard label='已穩定掌握' value={`${summary.masteredCount}`} />
+            <MetricCard label='待複習單字' value={`${summary.dueCount}`} />
+            <MetricCard label='今日已複習' value={`${summary.reviewedToday}`} />
+            <MetricCard label='追蹤中的單字' value={`${summary.trackedVocabulary}`} />
+            <MetricCard label='已熟練單字' value={`${summary.masteredCount}`} />
           </div>
         </header>
 
@@ -122,8 +122,8 @@ export default async function JaeasyReviewPage({
                       <p className='mt-2 text-sm leading-7 text-slate-500'>{item.vocab.exampleZh}</p>
                     </div>
                     <div className='rounded-3xl bg-slate-50 p-5'>
-                      <p className='text-sm font-semibold text-slate-500'>目前排程</p>
-                      <p className='mt-2 text-sm leading-7 text-slate-600'>重複次數：{item.srs.repetitions}</p>
+                      <p className='text-sm font-semibold text-slate-500'>複習紀錄</p>
+                      <p className='mt-2 text-sm leading-7 text-slate-600'>累積次數：{item.srs.repetitions}</p>
                       <p className='mt-1 text-sm leading-7 text-slate-600'>熟悉係數：{item.srs.easeFactor.toFixed(2)}</p>
                       <p className='mt-1 text-sm leading-7 text-slate-600'>上次評分：{item.srs.lastGrade}</p>
                     </div>
@@ -156,22 +156,22 @@ export default async function JaeasyReviewPage({
             ) : (
               <article className='rounded-[2rem] border border-white/70 bg-white/86 p-7 text-center shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
                 <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>複習完成</p>
-                <h2 className='mt-3 text-3xl font-black tracking-tight text-slate-950'>今天沒有待處理複習</h2>
+                <h2 className='mt-3 text-3xl font-black tracking-tight text-slate-950'>今天沒有待複習單字</h2>
                 <p className='mt-4 text-base leading-8 text-slate-600'>
-                  目前到期的卡片已經清空了。你可以去做一回測驗，或回到會員中心看看下一批排程。
+                  目前所有排程中的單字都已處理完畢。您可以回到首頁繼續學習，或先做一回測驗來建立新的複習內容。
                 </p>
                 <div className='mt-6 flex flex-wrap justify-center gap-3'>
                   <Link
                     href='/jaeasy/quiz?level=N5&type=vocab'
                     className='rounded-full bg-sky-600 px-6 py-3 text-sm font-bold text-white transition-transform hover:-translate-y-0.5'
                   >
-                    去做測驗
+                    開始測驗
                   </Link>
                   <Link
                     href='/jaeasy'
                     className='rounded-full border border-slate-200 px-6 py-3 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-50'
                   >
-                    回會員中心
+                    回 Jaeasy 首頁
                   </Link>
                 </div>
               </article>
@@ -180,8 +180,8 @@ export default async function JaeasyReviewPage({
 
           <aside className='grid gap-5'>
             <article className='rounded-[2rem] border border-white/70 bg-white/86 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
-              <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>即將到期</p>
-              <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>下一輪排程</h2>
+              <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>接下來的排程</p>
+              <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>即將到來的複習</h2>
               <div className='mt-6 grid gap-3'>
                 {upcomingReviews.length > 0 ? (
                   upcomingReviews.map((item) => (
@@ -193,7 +193,7 @@ export default async function JaeasyReviewPage({
                   ))
                 ) : (
                   <p className='rounded-3xl border border-dashed border-slate-200 px-4 py-5 text-sm leading-7 text-slate-600'>
-                    先完成幾次複習後，這裡會顯示你下一輪的卡片時間。
+                    目前沒有後續複習排程，之後新的單字加入後會再自動安排。
                   </p>
                 )}
               </div>
@@ -201,11 +201,11 @@ export default async function JaeasyReviewPage({
 
             <article className='rounded-[2rem] bg-[linear-gradient(135deg,#17304d_0%,#0b5cff_100%)] p-6 text-white shadow-[0_24px_60px_rgba(11,92,255,0.22)]'>
               <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>評分說明</p>
-              <h2 className='mt-3 text-2xl font-black tracking-tight'>評分怎麼按</h2>
+              <h2 className='mt-3 text-2xl font-black tracking-tight'>怎麼打分最準</h2>
               <div className='mt-5 grid gap-3 text-sm leading-7 text-sky-50/90'>
-                <p>0-1：幾乎不記得，系統會很快再排一次。</p>
-                <p>2-3：有印象但不穩，適合維持短間隔。</p>
-                <p>4-5：答得很順，間隔會逐步拉長。</p>
+                <p>0 到 1 分：幾乎想不起來，或完全不知道這個字的意思。</p>
+                <p>2 到 3 分：有印象，但還不穩定，需要再看幾次。</p>
+                <p>4 到 5 分：可以快速辨認，甚至能自己用出來。</p>
               </div>
             </article>
           </aside>

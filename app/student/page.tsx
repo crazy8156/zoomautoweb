@@ -33,39 +33,39 @@ type DailyArticle = {
 
 const articleThemes: DailyArticle[] = [
   {
-    title: '今天先把節奏拉回來',
-    summary: '先完成今天該做的複習，再決定要不要加做測驗。把步驟縮小，學習會更穩。',
-    points: ['先完成今日待複習', '再安排一個 20 分鐘的專注時段', '晚上回頭看一次錯題即可'],
+    title: '今天先把發音和例句連在一起記',
+    summary: '先掌握單字的讀音，再搭配一句短例句，記憶會比只背中文意思更牢靠。',
+    points: ['先念出讀音再看字義', '今天只挑 5 個字反覆練習', '能造句就代表真的開始會用了'],
   },
   {
-    title: '把課堂內容接回自學',
-    summary: '今天如果有 Zoom 課，最值得做的是把課堂新內容立刻接到自己的複習清單。',
-    points: ['課後 10 分鐘整理新單字', '把不熟的句型另外記下', '先做短練習，不用一次做太多'],
+    title: '把課前 10 分鐘留給暖身複習',
+    summary: '上 Zoom 課前先看一輪待複習單字，進入課堂時會更容易聽懂老師的提問與說明。',
+    points: ['課前 10 分鐘快速瀏覽', '先看昨天答錯的字詞', '用耳朵跟嘴巴一起帶動記憶'],
   },
   {
-    title: '先穩住固定輸入量',
-    summary: '穩定比爆量更重要。每天保持一點輸入，長期效果會比一次衝很多更好。',
-    points: ['今天至少讀一段短文', '把新單字放進例句裡', '完成後再看一次發音'],
+    title: '今天練習把句子說完整',
+    summary: '不只知道答案，還要試著把句子完整說出來，語感才會慢慢建立起來。',
+    points: ['從簡短句型開始練', '先求清楚再求速度', '把常用句型存成自己的素材'],
   },
   {
-    title: '把錯題變成今天的主角',
-    summary: '測驗最有價值的地方不是分數，而是幫你找到還沒真正理解的地方。',
-    points: ['先看最近一題錯題', '找出是單字、文法還是閱讀卡住', '再做一題同級別練習'],
+    title: '複習不是重背，是把記憶叫回來',
+    summary: '看到單字先停一下，試著自己回想讀音和意思，再看答案，效果會比直接閱讀好得多。',
+    points: ['先回想，再核對答案', '錯的題目先標記起來', '短時間多次接觸最有效'],
   },
   {
-    title: '今天做一個小循環',
-    summary: '複習、練習、再回看一次，這種小循環比單純一直看教材更有效。',
-    points: ['複習 5 個單字', '完成 1 組小測驗', '回頭重看今天最不熟的一題'],
+    title: '今天也讓學習節奏保持輕快',
+    summary: '穩定學習比一次衝太多更重要。每天完成一小段，就會慢慢累積成可見的進步。',
+    points: ['先完成今天的小目標', '每次專注 15 分鐘即可', '留一點餘裕比較能長期維持'],
   },
   {
-    title: '先顧今天，再準備下一堂',
-    summary: '如果明天或這週還有課，把今天的自學節奏穩住，下一堂的吸收會明顯比較好。',
-    points: ['看一下下一堂課主題', '確認自己還不熟的部分', '先補最容易出錯的地方'],
+    title: '測驗不是壓力，是找出還不熟的地方',
+    summary: '做題的目的不是追求全對，而是快速看出哪些觀念還需要再加強。',
+    points: ['先記錄不熟的題型', '錯題比對題更值得回看', '複習後再做一次會更有感'],
   },
   {
-    title: '讓學習保持輕一點',
-    summary: '今天不一定要衝很多，只要保持進度不要斷掉，你就已經在前進了。',
-    points: ['完成今日待複習', '看一篇短內容', '把學習收在一個清楚的結尾'],
+    title: '把今天學到的字用在生活裡',
+    summary: '只要能把新單字放進自己的情境裡，記憶會從短期印象變成真正可用的能力。',
+    points: ['想一個自己會用到的情境', '用新單字寫一句話', '越貼近日常越容易記住'],
   },
 ];
 
@@ -97,7 +97,7 @@ function formatTimeUntil(timestamp: number) {
   const diffMs = timestamp - Date.now();
 
   if (diffMs <= 0) {
-    return '已開始';
+    return '已經開始';
   }
 
   const diffMinutes = Math.round(diffMs / (1000 * 60));
@@ -130,16 +130,15 @@ function buildDailyArticle(memberName: string, dueCount: number, todayCourseCoun
   const theme = articleThemes[new Date().getDay()];
 
   return {
-    title: `${memberName} 的今日學習提示`,
+    title: `${memberName}，今天的學習提醒`,
     summary: theme.summary,
     points: [
       theme.points[0],
-      dueCount > 0 ? `今天有 ${dueCount} 個待複習項目，先把它們清掉。`
-      : '今天待複習不多，適合補一點新內容。',
-      todayCourseCount > 0 ? `今天有 ${todayCourseCount} 堂課，課後記得把課堂內容接回自學。`
-      : '今天沒有排課，適合安排一段完整自學時間。',
-      latestLevel ? `最近一次測驗級別是 ${latestLevel}，今天可以延續同級別練習。`
-      : '今天可以從一組基礎小測驗開始暖機。',
+      dueCount > 0 ? `今天有 ${dueCount} 個待複習項目，先完成一輪會比較安心。` : '今天沒有待複習單字，可以把時間留給新進度或測驗。',
+      todayCourseCount > 0 ? `今天有 ${todayCourseCount} 堂課程安排，記得提早確認 Zoom 連結。`
+      : '今天沒有排定課程，可以安排一次短時間自主練習。',
+      latestLevel ? `最近一次測驗等級是 ${latestLevel}，可以延續同一層級再做一回。`
+      : '如果今天想先暖身，建議先從 N5 單字測驗開始。',
     ],
   };
 }
@@ -224,10 +223,10 @@ export default async function StudentPortalPage() {
             <div>
               <p className='text-sm font-black uppercase tracking-[0.22em] text-sky-700'>學生中心</p>
               <h1 className='mt-3 font-["Plus_Jakarta_Sans"] text-4xl font-extrabold tracking-tight text-slate-950 md:text-6xl'>
-                學生中心
+                學習總覽
               </h1>
               <p className='mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg'>
-                這裡會把今天的複習、課程、Zoom 連結和自學內容整理在一起，讓你一登入就知道先做什麼。
+                這裡會幫您整合今天的課程安排、Zoom 上課入口、Jaeasy 複習進度與每日學習提醒，讓您一進來就知道接下來該做什麼。
               </p>
             </div>
 
@@ -236,7 +235,7 @@ export default async function StudentPortalPage() {
                 href='/'
                 className='rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50'
               >
-                回平台入口
+                回首頁
               </Link>
               <form action={logoutAction}>
                 <button className='rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5'>
@@ -247,8 +246,8 @@ export default async function StudentPortalPage() {
           </div>
 
           <div className='mt-8 grid gap-4 md:grid-cols-3'>
-            <SummaryCard label='學生名稱' value={member.fullName || session.fullName || member.email} />
-            <SummaryCard label='今日待複習' value={`${reviewItems.length} 項`} />
+            <SummaryCard label='目前帳號' value={member.fullName || session.fullName || member.email} />
+            <SummaryCard label='待複習單字' value={`${reviewItems.length} 個`} />
             <SummaryCard label='今日課程' value={`${todayScheduleItems.length} 堂`} />
           </div>
         </section>
@@ -257,14 +256,14 @@ export default async function StudentPortalPage() {
           <article className='rounded-[2rem] bg-[linear-gradient(135deg,#17304d_0%,#0b5cff_100%)] p-7 text-white shadow-[0_28px_70px_rgba(11,92,255,0.24)] md:p-8'>
             <div className='flex flex-wrap items-center justify-between gap-3'>
               <div>
-                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>今日 Zoom 提醒</p>
-                <h2 className='mt-2 text-3xl font-black tracking-tight'>今天 Zoom 上課提醒</h2>
+                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>今日 Zoom 課程</p>
+                <h2 className='mt-2 text-3xl font-black tracking-tight'>準備上課</h2>
               </div>
               <Link
                 href='/student/course-center'
                 className='rounded-full border border-white/20 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-white/10'
               >
-                前往課程中心
+                查看課程中心
               </Link>
             </div>
 
@@ -272,9 +271,9 @@ export default async function StudentPortalPage() {
               <div className='mt-6 grid gap-4'>
                 <div className='rounded-3xl border border-white/12 bg-white/10 p-5'>
                   <p className='text-lg font-black tracking-tight'>{nextTodayCourse.courseTitle}</p>
-                  <p className='mt-2 text-sm leading-7 text-sky-50/90'>開始時間：{formatDateTime(nextTodayCourse.session.start_time)}</p>
-                  <p className='text-sm leading-7 text-sky-50/90'>距離上課：{formatTimeUntil(nextTodayCourse.startsAt)}</p>
-                  <p className='text-sm leading-7 text-sky-50/90'>狀態：{formatBookingStatus(nextTodayCourse.bookingStatus)}</p>
+                  <p className='mt-2 text-sm leading-7 text-sky-50/90'>上課時間：{formatDateTime(nextTodayCourse.session.start_time)}</p>
+                  <p className='text-sm leading-7 text-sky-50/90'>距離開始：{formatTimeUntil(nextTodayCourse.startsAt)}</p>
+                  <p className='text-sm leading-7 text-sky-50/90'>預約狀態：{formatBookingStatus(nextTodayCourse.bookingStatus)}</p>
                 </div>
                 <div className='flex flex-wrap gap-3'>
                   {nextTodayCourse.session.zoom_join_url ? (
@@ -284,18 +283,18 @@ export default async function StudentPortalPage() {
                       rel='noreferrer'
                       className='inline-flex rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 transition-transform hover:-translate-y-0.5'
                     >
-                      進入 Zoom
+                      進入 Zoom 教室
                     </a>
                   ) : (
                     <span className='inline-flex rounded-full border border-white/20 px-5 py-3 text-sm font-bold text-white/90'>
-                      尚未提供 Zoom 連結
+                      尚未建立 Zoom 連結
                     </span>
                   )}
                 </div>
               </div>
             ) : (
               <div className='mt-6 rounded-3xl border border-white/12 bg-white/10 p-5 text-sm leading-7 text-sky-50/90'>
-                今天沒有排定課程，你可以先完成待複習內容，或直接前往課程中心查看接下來的安排。
+                今天目前沒有安排中的課程。您可以先完成單字複習，或到課程中心查看可預約的課程。
               </div>
             )}
           </article>
@@ -303,11 +302,11 @@ export default async function StudentPortalPage() {
           <article className='rounded-[2rem] border border-white/70 bg-white/84 p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
             <div className='flex flex-wrap items-center justify-between gap-3'>
               <div>
-                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>我的課表</p>
-                <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>我的課表</h2>
+                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>近期課程安排</p>
+                <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>我的上課清單</h2>
               </div>
               <Link href='/my-bookings' className='text-sm font-bold text-sky-700 underline underline-offset-4'>
-                查看完整課表
+                查看全部預約
               </Link>
             </div>
 
@@ -318,8 +317,8 @@ export default async function StudentPortalPage() {
                     <div className='flex flex-wrap items-start justify-between gap-4'>
                       <div>
                         <p className='text-lg font-black tracking-tight text-slate-950'>{item.courseTitle}</p>
-                        <p className='mt-2 text-sm leading-7 text-slate-600'>開始時間：{formatDateTime(item.session.start_time)}</p>
-                        <p className='text-sm leading-7 text-slate-600'>狀態：{formatBookingStatus(item.bookingStatus)}</p>
+                        <p className='mt-2 text-sm leading-7 text-slate-600'>上課時間：{formatDateTime(item.session.start_time)}</p>
+                        <p className='text-sm leading-7 text-slate-600'>預約狀態：{formatBookingStatus(item.bookingStatus)}</p>
                       </div>
                       {item.session.zoom_join_url ? (
                         <a
@@ -331,14 +330,14 @@ export default async function StudentPortalPage() {
                           進入課程
                         </a>
                       ) : (
-                        <span className='rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600'>等待開課連結</span>
+                        <span className='rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600'>尚未建立連結</span>
                       )}
                     </div>
                   </article>
                 ))
               ) : (
                 <div className='rounded-3xl border border-dashed border-slate-200 px-5 py-6 text-sm leading-7 text-slate-600'>
-                  目前還沒有課表資料，之後預約成功的課程會自動出現在這裡。
+                  目前還沒有任何課程預約。完成第一筆預約後，這裡會自動顯示您的上課時間與 Zoom 入口。
                 </div>
               )}
             </div>
@@ -349,8 +348,8 @@ export default async function StudentPortalPage() {
           <article className='rounded-[2rem] border border-white/70 bg-white/84 p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
             <div className='flex flex-wrap items-center justify-between gap-3'>
               <div>
-                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>今日單字</p>
-                <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>今日單字 5 個</h2>
+                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>今日單字複習</p>
+                <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>建議先看這 5 個字</h2>
               </div>
               <Link href='/jaeasy/review' className='text-sm font-bold text-sky-700 underline underline-offset-4'>
                 前往複習
@@ -374,7 +373,7 @@ export default async function StudentPortalPage() {
                 ))
               ) : (
                 <div className='rounded-3xl border border-dashed border-slate-200 px-5 py-6 text-sm leading-7 text-slate-600'>
-                  目前還沒有可顯示的單字，先到自學中心建立你的複習節奏，這裡就會開始出現推薦內容。
+                  目前沒有待複習的單字。您可以先去做一回測驗，系統之後會自動安排複習節奏。
                 </div>
               )}
             </div>
@@ -383,11 +382,11 @@ export default async function StudentPortalPage() {
           <article className='rounded-[2rem] border border-white/70 bg-white/84 p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
             <div className='flex flex-wrap items-center justify-between gap-3'>
               <div>
-                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>每日文章</p>
-                <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>每日文章</h2>
+                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>每日提醒</p>
+                <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>今天的學習節奏</h2>
               </div>
               <Link href='/jaeasy' className='text-sm font-bold text-sky-700 underline underline-offset-4'>
-                前往自學中心
+                前往 Jaeasy
               </Link>
             </div>
 

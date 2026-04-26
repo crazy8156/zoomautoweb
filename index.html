@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom 線上教學網站 | Zoom eLearning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef5ff;
+      --panel: rgba(255, 255, 255, 0.82);
+      --panel-strong: #ffffff;
+      --text: #17304d;
+      --muted: #5d7188;
+      --line: rgba(23, 48, 77, 0.1);
+      --brand: #0b5cff;
+      --brand-deep: #003fbe;
+      --accent: #12a9cf;
+      --shadow: 0 28px 60px rgba(17, 63, 122, 0.14);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(11, 92, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 88% 16%, rgba(18, 169, 207, 0.18), transparent 18%),
+        linear-gradient(180deg, #f7fbff 0%, #f1f7ff 45%, #eaf2ff 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 251, 255, 0.78);
+      border-bottom: 1px solid rgba(33, 49, 54, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #f7fbff;
+      background: linear-gradient(135deg, #0b5cff, #1246b8 58%, #12a9cf);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      background: var(--text);
+      color: #f7fbff;
+      box-shadow: 0 14px 30px rgba(33, 49, 54, 0.16);
+    }
+
+    .button {
+      padding: 14px 22px;
+    }
+
+    .button:hover,
+    .nav-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #0b5cff, #3296ff);
+      color: #f7fbff;
+      box-shadow: 0 18px 38px rgba(11, 92, 255, 0.22);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.64);
+    }
+
+    .hero {
+      padding: 52px 0 38px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 28px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.52);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-copy,
+    .hero-side,
+    .card,
+    .timeline-panel,
+    .faq-item,
+    .testimonial,
+    .metric {
+      border-radius: var(--radius-xl);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      right: -48px;
+      bottom: -48px;
+      width: 180px;
+      height: 180px;
+      border-radius: 38px;
+      background: linear-gradient(135deg, rgba(18, 169, 207, 0.12), rgba(11, 92, 255, 0.14));
+      transform: rotate(16deg);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(11, 92, 255, 0.12);
+      color: var(--brand-deep);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Space Grotesk", "Noto Sans TC", sans-serif;
+      letter-spacing: -0.05em;
+    }
+
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.95;
+      max-width: 10ch;
+    }
+
+    .hero-copy p,
+    .section-copy,
+    .card p,
+    .testimonial p,
+    .faq-answer,
+    .timeline-panel p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .hero-copy p {
+      margin: 18px 0 0;
+      max-width: 44rem;
+      font-size: 1.04rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .metric {
+      padding: 18px;
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+    }
+
+    .metric strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.05em;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-side {
+      padding: 24px;
+      color: #f5fbfb;
+      background:
+        linear-gradient(180deg, rgba(11, 92, 255, 0.96), rgba(16, 56, 134, 0.98)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    }
+
+    .side-label {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-side h2 {
+      margin-top: 18px;
+      font-size: 2rem;
+      line-height: 1.08;
+      max-width: 10ch;
+    }
+
+    .side-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .side-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      line-height: 1.7;
+    }
+
+    .side-item strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.56);
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card,
+    .timeline-panel,
+    .testimonial,
+    .faq-item {
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: var(--shadow);
+    }
+
+    .step {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      background: rgba(11, 92, 255, 0.12);
+      color: var(--brand-deep);
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+    }
+
+    .card strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+    }
+
+    .course-tag {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(33, 49, 54, 0.08);
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .meta-row span {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(33, 49, 54, 0.06);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .timeline-wrap {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .timeline-item time {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .timeline-item div {
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(33, 49, 54, 0.12);
+      line-height: 1.7;
+    }
+
+    .timeline-item:last-child div {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .testimonial strong {
+      display: inline-block;
+      margin-top: 18px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 20px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border: 0;
+      text-align: left;
+      font: inherit;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .faq-question .mark {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.3rem;
+      transition: transform 0.24s ease;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 22px;
+      transition: max-height 0.28s ease, padding 0.28s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 180px;
+      padding: 0 22px 20px;
+    }
+
+    .faq-item.open .mark {
+      transform: rotate(45deg);
+    }
+
+    .cta {
+      margin: 40px 0 68px;
+      padding: 34px;
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(23, 48, 77, 0.96), rgba(11, 92, 255, 0.92)),
+        linear-gradient(135deg, rgba(18, 169, 207, 0.18), transparent 60%);
+      color: #f4fbfb;
+      box-shadow: 0 30px 60px rgba(10, 34, 36, 0.2);
+    }
+
+    .cta p {
+      margin: 12px 0 0;
+      max-width: 44rem;
+      color: rgba(244, 251, 251, 0.8);
+      line-height: 1.8;
+    }
+
+    .footer {
+      padding: 0 0 28px;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(33, 49, 54, 0.08);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .nav-links,
+      .timeline-wrap,
+      .grid-3,
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav,
+      .section-head,
+      .footer-row {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .hero-copy,
+      .hero-side,
+      .card,
+      .timeline-panel,
+      .testimonial,
+      .cta {
+        padding: 28px;
+      }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Zoom eLearning 首頁">
+        <span class="brand-mark">Z</span>
+        <span>Zoom eLearning</span>
+      </a>
+      <nav class="nav-links" aria-label="主選單">
+        <a href="#paths">教學方案</a>
+        <a href="#courses">直播課程</a>
+        <a href="#weekly">上課節奏</a>
+        <a href="#faq">常見問題</a>
+      </nav>
+      <a class="nav-cta" href="#join">預約體驗</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy panel reveal">
+          <div class="eyebrow">Zoom 線上直播教學平台</div>
+          <h1>把遠距上課，做得更像一間真正有節奏的教室。</h1>
+          <p>
+            這是一個以 Zoom 線上教學為核心的網站首頁，適合展示直播課程、課後回放、班級互動與教師排課資訊。第一次進站的學生或家長，可以很快理解課程形式、上課方式和加入流程。
+          </p>
+          <div class="button-row">
+            <a class="button button-primary" href="#courses">查看直播課程</a>
+            <a class="button button-secondary" href="#weekly">了解上課方式</a>
+          </div>
+          <div class="metric-grid">
+            <article class="metric panel">
+              <strong>24/7</strong>
+              <span>可安排直播與課後回放</span>
+            </article>
+            <article class="metric panel">
+              <strong>1 對 1</strong>
+              <span>個別指導與小班互動</span>
+            </article>
+            <article class="metric panel">
+              <strong>即時</strong>
+              <span>點名、提問與課堂討論</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="hero-side panel reveal">
+          <span class="side-label">Why Zoom Classrooms</span>
+          <h2>直播教學、互動討論與課後複習都能放進同一套流程。</h2>
+          <div class="side-list">
+            <div class="side-item">
+              <strong>固定教室連結</strong>
+              每堂課可快速進入同一個線上教室，降低學生每次上課前的混亂感。
+            </div>
+            <div class="side-item">
+              <strong>即時互動教學</strong>
+              老師可以邊講解邊提問，學生也能透過訊息、語音與畫面分享即時參與。
+            </div>
+            <div class="side-item">
+              <strong>課後回放與補課安排</strong>
+              沒跟到直播的學生，也能透過錄影與補課機制追上課程進度。
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="paths">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>三種教學方案</h2>
+            <div class="pill-row">
+              <span class="pill">Zoom 直播教室</span>
+              <span class="pill">課後回放機制</span>
+              <span class="pill">班級互動管理</span>
+            </div>
+          </div>
+          <p class="section-copy">這個版本把網站定位成 Zoom 線上教學平台，所以入口改成教學方案，讓學生或家長能先理解上課模式，再決定加入哪一種班別。</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="step">01</div>
+            <strong>一對一精準教學</strong>
+            <p>適合需要客製進度安排的學生，老師可依程度調整教材、作業與課後追蹤。</p>
+          </article>
+          <article class="card reveal">
+            <div class="step">02</div>
+            <strong>小班直播互動課</strong>
+            <p>用固定時段的 Zoom 班級課程維持節奏，保留討論、問答與同儕互動空間。</p>
+          </article>
+          <article class="card reveal">
+            <div class="step">03</div>
+            <strong>錄播複習加強班</strong>
+            <p>搭配課後錄影、補充講義與複習任務，讓學生在非同步時段也能追上進度。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="courses">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>直播課程</h2>
+          <p class="section-copy">課程區塊改成更像線上教學網站的呈現方式，直接展示直播主題、上課週期與課後支援內容。</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <span class="course-tag">Zoom 英文課</span>
+            <strong>直播口說與聽力互動班</strong>
+            <p>透過即時問答、分組練習與課堂對話，讓學生在線上也能維持穩定開口頻率。</p>
+            <div class="meta-row">
+              <span>6 週</span>
+              <span>每週 2 堂</span>
+              <span>含回放</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="course-tag">Zoom 數學課</span>
+            <strong>國中數學觀念強化班</strong>
+            <p>用直播講解搭配白板演示與題型練習，幫助學生把觀念和解題流程一起建立起來。</p>
+            <div class="meta-row">
+              <span>8 週</span>
+              <span>每週 1 堂</span>
+              <span>附講義</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="course-tag">Zoom 課後複習</span>
+            <strong>錄影回放與作業追蹤方案</strong>
+            <p>適合需要反覆複習的學生，課後可重看直播內容，搭配作業提交與老師回饋。</p>
+            <div class="meta-row">
+              <span>彈性安排</span>
+              <span>回放存取</span>
+              <span>作業追蹤</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="timeline-wrap" id="weekly">
+          <section class="timeline-panel reveal">
+            <div class="eyebrow">Zoom Class Flow</div>
+            <h2 style="margin-top:18px; font-size:2rem; line-height:1.08;">從上課前提醒，到課後回放，整個線上教學流程都能說清楚。</h2>
+            <p style="margin:14px 0 0;">這裡我改成更像真實 Zoom 教學網站會出現的流程說明，讓學生知道每次上課前後會發生什麼事。</p>
+          </section>
+
+          <section class="timeline-panel reveal">
+            <div class="timeline">
+              <div class="timeline-item">
+                <time>課前</time>
+                <div><strong>收到課程提醒與連結</strong><br>學生於課前取得 Zoom 連結、教材摘要與本次上課重點。</div>
+              </div>
+              <div class="timeline-item">
+                <time>上課中</time>
+                <div><strong>直播講解與互動提問</strong><br>老師可結合講義、白板與畫面分享，維持線上課堂的節奏與參與感。</div>
+              </div>
+              <div class="timeline-item">
+                <time>課後</time>
+                <div><strong>回放與作業整理</strong><br>學生可重看錄影、下載講義並完成指定作業，避免只上過一次就忘記。</div>
+              </div>
+              <div class="timeline-item">
+                <time>追蹤</time>
+                <div><strong>老師回饋與補課安排</strong><br>依出席、作業與學習狀態安排後續追蹤，讓遠距教學也能有持續性。</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>學生與家長回饋</h2>
+          <p class="section-copy">改成線上教學網站後，這區更適合放直播課感受、老師互動方式與課後追蹤的實際回饋。</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="testimonial reveal">
+            <p>「老師在線上課也會一直確認我們有沒有跟上，提問節奏很自然，不會像只是在看錄影。」</p>
+            <strong>怡安｜高中學生</strong>
+          </article>
+          <article class="testimonial reveal">
+            <p>「作為家長，我很在意課後有沒有回放和作業追蹤，這個網站把整個流程講得很清楚，放心很多。」</p>
+            <strong>承翰｜家長</strong>
+          </article>
+          <article class="testimonial reveal">
+            <p>「班級課不是只有老師單向講課，分組討論和課堂互動都有安排，遠距學習也不會太被動。」</p>
+            <strong>佩珊｜國中學生</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>常見問題</h2>
+          <p class="section-copy">我把問題內容也改成 Zoom 線上教學常見的疑問，讓整站語氣更一致。</p>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item reveal open">
+            <button class="faq-question" type="button">
+              <span>學生要先安裝 Zoom 才能上課嗎？</span>
+              <span class="mark">+</span>
+            </button>
+            <div class="faq-answer">通常會建議先安裝 Zoom 用戶端，這樣上課時的音訊、畫面與互動體驗會更穩定，也比較方便進行畫面分享或分組討論。</div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>錯過直播課程可以補課嗎？</span>
+              <span class="mark">+</span>
+            </button>
+            <div class="faq-answer">可以，網站可搭配課後回放、補課時段或錄影複習機制，讓學生即使沒跟到直播，也不會直接中斷進度。</div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>之後能再加報名、登入或課表功能嗎？</span>
+              <span class="mark">+</span>
+            </button>
+            <div class="faq-answer">可以，這個首頁已經很適合繼續接成正式網站，像是報名表單、學生登入、教師課表、課程清單或後台管理都能往下加。</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="cta reveal" id="join">
+        <h2>把 Zoom 直播課程整理成一個更完整的線上教學入口。</h2>
+        <p>如果你要，我下一步可以直接把這個首頁再擴成正式版本，例如加入課程詳情頁、師資介紹、報名表單、學生登入入口，或整合更完整的 Zoom 教學流程文案。</p>
+        <div class="button-row">
+          <a class="button button-primary" href="#courses">先看直播課程</a>
+          <a class="button button-secondary" href="#top">回到頂部</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <span>Zoom eLearning 線上教學網站</span>
+      <span>適合展示直播課程、課後回放與遠距教學流程</span>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+    document.querySelectorAll(".faq-question").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.parentElement.classList.toggle("open");
+      });
+    });
+  </script>
+</body>
+</html>

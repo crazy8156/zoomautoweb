@@ -1,0 +1,9 @@
+[Unit]
+Description=Deploy zoom-elearning-web from GitHub
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/zoom-elearning-web
+ExecStart=/opt/zoom-elearning-web/scripts/deploy-from-github.sh

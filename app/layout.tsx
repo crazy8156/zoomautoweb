@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Zoom e-learning',
-  description: '線上課程預約與 Zoom 場次管理系統',
+  title: 'Zoom 教學平台 | 直播教學與日文自學整合平台',
+  description: '整合 Zoom 直播課程、學生預約流程與 Jaeasy 日文自學模組的中文教學平台。',
 };
 
 export default function RootLayout({

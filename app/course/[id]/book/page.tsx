@@ -100,8 +100,11 @@ export default async function BookCoursePage({
   return (
     <main className='mx-auto max-w-3xl px-6 py-10'>
       <Link href={`/course/${id}`} className='text-sm font-semibold underline'>回課程詳情</Link>
+      <div className='mt-2'>
+        <Link href='/student/course-center' className='text-sm font-semibold underline'>回課程中心</Link>
+      </div>
       <section className='mt-6 rounded border bg-white p-6 shadow-sm'>
-        <p className='text-sm font-semibold text-emerald-700'>Booking</p>
+        <p className='text-sm font-semibold text-emerald-700'>預約課程</p>
         <h1 className='mt-2 text-3xl font-bold'>預約課程</h1>
         <div className='mt-5 rounded bg-slate-50 p-4 text-sm leading-7'>
           <p><span className='font-semibold'>課程：</span>{row?.title ?? relatedCourse?.title ?? '未設定'}</p>
@@ -114,7 +117,7 @@ export default async function BookCoursePage({
           <form action={createBooking} className='mt-6 space-y-4'>
             <input type='hidden' name='sessionId' value={selectedSession.id} />
             <div className='rounded border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-6 text-emerald-900'>
-              預約成功後，這個瀏覽器會自動保存您的學生入口。之後可直接從「我的課程」查看 Zoom 上課連結。
+              預約成功後，這個瀏覽器會自動保存學生入口。之後可直接從「我的課程」或「課程中心」查看 Zoom 上課連結。
             </div>
             <button className='rounded bg-slate-950 px-4 py-2 text-sm font-semibold text-white'>確認預約</button>
           </form>

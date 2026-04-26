@@ -1,0 +1,10 @@
+[Unit]
+Description=Poll GitHub for zoom-elearning-web deployments
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+Unit=zoom-elearning-autodeploy.service
+
+[Install]
+WantedBy=timers.target

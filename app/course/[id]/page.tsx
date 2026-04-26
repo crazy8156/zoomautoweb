@@ -26,12 +26,15 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
   return (
     <main className='mx-auto max-w-5xl px-6 py-10'>
       <div className='mb-6 flex flex-wrap justify-between gap-3'>
-        <Link href='/' className='text-sm font-semibold underline'>回課程列表</Link>
-        <Link href='/my-bookings' className='text-sm font-semibold underline'>查詢我的預約</Link>
+        <div className='flex flex-wrap gap-3'>
+          <Link href='/student/course-center' className='text-sm font-semibold underline'>回課程中心</Link>
+          <Link href='/student' className='text-sm font-semibold underline'>回學生中心</Link>
+        </div>
+        <Link href='/student' className='text-sm font-semibold underline'>回學生中心</Link>
       </div>
 
       <section className='rounded border bg-white p-6 shadow-sm'>
-        <p className='text-sm font-semibold text-emerald-700'>Course</p>
+        <p className='text-sm font-semibold text-emerald-700'>課程詳情</p>
         <h1 className='mt-2 text-3xl font-bold'>{row.title}</h1>
         <p className='mt-4 max-w-3xl leading-7 text-slate-700'>{row.description ?? '老師尚未填寫課程介紹。'}</p>
         <dl className='mt-6 grid gap-4 text-sm md:grid-cols-3'>

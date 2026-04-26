@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local backups
+*.bak
+*.bak_*
+
+# runtime data snapshots
+data/jaeasy/quiz_attempts.json
+data/jaeasy/user_vocab_srs.json

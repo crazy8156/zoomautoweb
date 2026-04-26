@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "word": "食べる",
+    "reading": "たべる",
+    "meaningZh": "吃",
+    "pos": "動詞",
+    "jlptLevel": "N5",
+    "exampleJa": "毎朝パンを食べます。",
+    "exampleZh": "我每天早上都吃麵包。",
+    "audioUrl": null
+  },
+  {
+    "id": 2,
+    "word": "飲む",
+    "reading": "のむ",
+    "meaningZh": "喝",
+    "pos": "動詞",
+    "jlptLevel": "N5",
+    "exampleJa": "授業の前に水を飲みます。",
+    "exampleZh": "上課前先喝水。",
+    "audioUrl": null
+  },
+  {
+    "id": 3,
+    "word": "駅",
+    "reading": "えき",
+    "meaningZh": "車站",
+    "pos": "名詞",
+    "jlptLevel": "N5",
+    "exampleJa": "学校は駅の近くです。",
+    "exampleZh": "學校在車站附近。",
+    "audioUrl": null
+  },
+  {
+    "id": 4,
+    "word": "約束",
+    "reading": "やくそく",
+    "meaningZh": "約定、約好",
+    "pos": "名詞",
+    "jlptLevel": "N4",
+    "exampleJa": "明日の約束を確認しましょう。",
+    "exampleZh": "我們確認一下明天的約定吧。",
+    "audioUrl": null
+  },
+  {
+    "id": 5,
+    "word": "間に合う",
+    "reading": "まにあう",
+    "meaningZh": "趕上、來得及",
+    "pos": "動詞",
+    "jlptLevel": "N4",
+    "exampleJa": "電車に間に合いました。",
+    "exampleZh": "我趕上電車了。",
+    "audioUrl": null
+  },
+  {
+    "id": 6,
+    "word": "案内",
+    "reading": "あんない",
+    "meaningZh": "導覽、引導",
+    "pos": "名詞",
+    "jlptLevel": "N4",
+    "exampleJa": "受付で会場の案内をもらいました。",
+    "exampleZh": "我在櫃台拿到了會場導覽。",
+    "audioUrl": null
+  },
+  {
+    "id": 7,
+    "word": "比較する",
+    "reading": "ひかくする",
+    "meaningZh": "比較",
+    "pos": "動詞",
+    "jlptLevel": "N3",
+    "exampleJa": "二つの方法を比較して決めます。",
+    "exampleZh": "我會比較兩種方法後再決定。",
+    "audioUrl": null
+  },
+  {
+    "id": 8,
+    "word": "提案",
+    "reading": "ていあん",
+    "meaningZh": "提案",
+    "pos": "名詞",
+    "jlptLevel": "N3",
+    "exampleJa": "会議で新しい提案をしました。",
+    "exampleZh": "我在會議上提出了新的提案。",
+    "audioUrl": null
+  },
+  {
+    "id": 9,
+    "word": "対応",
+    "reading": "たいおう",
+    "meaningZh": "應對、處理",
+    "pos": "名詞",
+    "jlptLevel": "N3",
+    "exampleJa": "急な変更にも対応できます。",
+    "exampleZh": "即使臨時變更也能應對。",
+    "audioUrl": null
+  },
+  {
+    "id": 10,
+    "word": "観察",
+    "reading": "かんさつ",
+    "meaningZh": "觀察",
+    "pos": "名詞",
+    "jlptLevel": "N2",
+    "exampleJa": "データを観察して傾向を探します。",
+    "exampleZh": "觀察資料後找出趨勢。",
+    "audioUrl": null
+  },
+  {
+    "id": 11,
+    "word": "配慮",
+    "reading": "はいりょ",
+    "meaningZh": "體諒、顧慮",
+    "pos": "名詞",
+    "jlptLevel": "N2",
+    "exampleJa": "相手への配慮が必要です。",
+    "exampleZh": "需要顧慮對方的感受。",
+    "audioUrl": null
+  },
+  {
+    "id": 12,
+    "word": "維持する",
+    "reading": "いじする",
+    "meaningZh": "維持",
+    "pos": "動詞",
+    "jlptLevel": "N2",
+    "exampleJa": "集中力を維持するのは大変です。",
+    "exampleZh": "維持專注力並不容易。",
+    "audioUrl": null
+  },
+  {
+    "id": 13,
+    "word": "遂行",
+    "reading": "すいこう",
+    "meaningZh": "執行、貫徹",
+    "pos": "名詞",
+    "jlptLevel": "N1",
+    "exampleJa": "計画を最後まで遂行します。",
+    "exampleZh": "把計畫貫徹執行到最後。",
+    "audioUrl": null
+  },
+  {
+    "id": 14,
+    "word": "顕著",
+    "reading": "けんちょ",
+    "meaningZh": "顯著",
+    "pos": "形容動詞",
+    "jlptLevel": "N1",
+    "exampleJa": "学習効果が顕著に現れました。",
+    "exampleZh": "學習效果顯著地呈現出來了。",
+    "audioUrl": null
+  },
+  {
+    "id": 15,
+    "word": "概念",
+    "reading": "がいねん",
+    "meaningZh": "概念",
+    "pos": "名詞",
+    "jlptLevel": "N1",
+    "exampleJa": "まず基本概念を理解しましょう。",
+    "exampleZh": "先理解基本概念吧。",
+    "audioUrl": null
+  }
+]

@@ -50,3 +50,22 @@ export function formatCurrency(value: number | null | undefined) {
     style: 'currency',
   }).format(value ?? 0);
 }
+
+export function formatBookingStatus(status: string | null | undefined) {
+  switch ((status ?? '').trim().toLowerCase()) {
+    case 'booked':
+      return '已預約';
+    case 'attended':
+      return '已出席';
+    case 'absent':
+      return '缺席';
+    case 'late':
+      return '遲到';
+    case 'left_early':
+      return '早退';
+    case 'cancelled':
+      return '已取消';
+    default:
+      return status?.trim() || '未設定';
+  }
+}

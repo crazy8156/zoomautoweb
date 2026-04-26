@@ -1,0 +1,142 @@
+[
+  {
+    "id": "grammar-n5-1",
+    "type": "grammar",
+    "jlptLevel": "N5",
+    "question": "請選出正確句子：「私は毎朝 ____ パンを食べます。」",
+    "options": [
+      "に",
+      "を",
+      "で",
+      "へ"
+    ],
+    "answerIndex": 1,
+    "explanation": "動作對象用助詞「を」。"
+  },
+  {
+    "id": "grammar-n4-1",
+    "type": "grammar",
+    "jlptLevel": "N4",
+    "question": "「時間がないので、今日は映画を見に行く ____ やめます。」應填入哪個詞？",
+    "options": [
+      "ほど",
+      "しか",
+      "のを",
+      "ながら"
+    ],
+    "answerIndex": 2,
+    "explanation": "名詞化並搭配「やめます」時，使用「のを」。"
+  },
+  {
+    "id": "grammar-n3-1",
+    "type": "grammar",
+    "jlptLevel": "N3",
+    "question": "「説明を聞いた ____、すぐに作業を始めた。」最自然的是？",
+    "options": [
+      "うちに",
+      "とたん",
+      "ばかり",
+      "ほど"
+    ],
+    "answerIndex": 1,
+    "explanation": "表示某事一發生就立刻接續另一事，用「とたん」。"
+  },
+  {
+    "id": "grammar-n2-1",
+    "type": "grammar",
+    "jlptLevel": "N2",
+    "question": "「結果の良し悪し ____、まずは挑戦することが大切だ。」應選？",
+    "options": [
+      "に応じて",
+      "にかかわらず",
+      "に加えて",
+      "にとって"
+    ],
+    "answerIndex": 1,
+    "explanation": "不論結果如何，用「にかかわらず」。"
+  },
+  {
+    "id": "grammar-n1-1",
+    "type": "grammar",
+    "jlptLevel": "N1",
+    "question": "「彼の説明は理論的である ____、現場感覚にも富んでいる。」哪個最自然？",
+    "options": [
+      "のみならず",
+      "ものの",
+      "ところが",
+      "にしては"
+    ],
+    "answerIndex": 0,
+    "explanation": "「AのみならずB」表示不只 A，連 B 也如此。"
+  },
+  {
+    "id": "reading-n5-1",
+    "type": "reading",
+    "jlptLevel": "N5",
+    "question": "山田さんは毎日七時に起きます。朝ご飯を食べて、八時に学校へ行きます。山田さんは何時に学校へ行きますか。",
+    "options": [
+      "七時",
+      "七時半",
+      "八時",
+      "九時"
+    ],
+    "answerIndex": 2,
+    "explanation": "文中直接寫「八時に学校へ行きます」。"
+  },
+  {
+    "id": "reading-n4-1",
+    "type": "reading",
+    "jlptLevel": "N4",
+    "question": "店のお知らせ：今日は雨のため、開店時間を一時間遅らせます。お客様は何時から店を利用できますか。",
+    "options": [
+      "いつも通りの時間",
+      "一時間早く",
+      "一時間遅く",
+      "利用できない"
+    ],
+    "answerIndex": 2,
+    "explanation": "開店時間を一時間遅らせるので、一時間遲く利用できます。"
+  },
+  {
+    "id": "reading-n3-1",
+    "type": "reading",
+    "jlptLevel": "N3",
+    "question": "講座案內：この講座では、宿題の提出は任意ですが、復習ノートは毎回必要です。受講者に必ず求められるものは何ですか。",
+    "options": [
+      "宿題の提出",
+      "復習ノート",
+      "毎日のテスト",
+      "先生への報告書"
+    ],
+    "answerIndex": 1,
+    "explanation": "文中寫「復習ノートは毎回必要です」。"
+  },
+  {
+    "id": "reading-n2-1",
+    "type": "reading",
+    "jlptLevel": "N2",
+    "question": "報告書には、数字だけでなく背景も示すべきだ。筆者が伝えたいこととして最も近いのはどれですか。",
+    "options": [
+      "数字は不要だ",
+      "背景情報も重要だ",
+      "報告書は短いほどよい",
+      "背景だけ説明すればよい"
+    ],
+    "answerIndex": 1,
+    "explanation": "數字之外，背景也應該被說明。"
+  },
+  {
+    "id": "reading-n1-1",
+    "type": "reading",
+    "jlptLevel": "N1",
+    "question": "新制度の導入は効率化のためだが、現場の納得なくして定着は望めない。本文の要旨として最も適切なのはどれですか。",
+    "options": [
+      "効率化だけを優先すべきだ",
+      "現場は制度に従うべきだ",
+      "制度運用には現場の理解が欠かせない",
+      "新制度は導入しない方がよい"
+    ],
+    "answerIndex": 2,
+    "explanation": "制度定著需要現場的理解與認同。"
+  }
+]

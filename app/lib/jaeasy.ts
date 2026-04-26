@@ -15,92 +15,92 @@ export type ReviewPreview = {
 
 export const jaeasyTracks = [
   {
-    eyebrow: 'Vocabulary',
-    title: '單字複習',
-    text: '把 JLPT 單字整理成可反覆複習的節奏，適合搭配直播課後延續記憶與回顧。',
+    eyebrow: '單字學習',
+    title: '依 JLPT 分級累積字彙',
+    text: '從 N5 到 N1 建立清楚的單字庫，搭配例句、讀音與中文解釋，讓複習更有方向。',
   },
   {
-    eyebrow: 'Quiz',
-    title: '題庫練習',
-    text: '保留單字、文法、閱讀三種測驗模式，讓學習不只停留在課堂理解。',
+    eyebrow: '測驗練習',
+    title: '用題目反覆強化記憶',
+    text: '透過單字、文法、閱讀三種模式，快速檢查理解程度並累積答題手感。',
   },
   {
-    eyebrow: 'API',
-    title: '後端模組',
-    text: 'jaeasy 的 FastAPI、資料模型與認證邏輯已併入主資料夾，方便後續再串主站。',
+    eyebrow: '學習記錄',
+    title: '把進度留下來',
+    text: '每次作答與複習都會記錄，方便你回頭看自己的成長與弱點。',
   },
 ] as const;
 
 export const jlptTracks = [
   {
     level: 'N5' as JlptLevel,
-    focus: '基礎入門',
-    summary: '從日常生活單字、簡單句型與入門題型開始，適合剛進入日文學習的學生。',
+    focus: '入門基礎',
+    summary: '適合剛開始接觸日文的學生，先建立最常見的生活單字與基本句型。',
   },
   {
     level: 'N4' as JlptLevel,
-    focus: '穩定累積',
-    summary: '逐步拉高單字量與閱讀耐力，適合已經有基礎、需要穩定複習節奏的學習者。',
+    focus: '日常應用',
+    summary: '逐步擴充日常會話、閱讀短文與聽力理解所需的核心字彙。',
   },
   {
     level: 'N3' as JlptLevel,
-    focus: '中階進入',
-    summary: '開始把閱讀、文法與單字量結合起來，讓題目練習不只停在片段記憶。',
+    focus: '中階整合',
+    summary: '開始處理較長句子與段落，練習文法轉換與閱讀理解能力。',
   },
   {
     level: 'N2' as JlptLevel,
-    focus: '強化應試',
-    summary: '加重閱讀與文法應用，適合需要系統整理題型與錯題複盤的學生。',
+    focus: '進階理解',
+    summary: '朝工作、新聞與正式文章的理解前進，提升語感與速度。',
   },
   {
     level: 'N1' as JlptLevel,
-    focus: '高階挑戰',
-    summary: '面向高階詞彙、長篇閱讀與精準辨析，適合作為進階自學專區的上層入口。',
+    focus: '高階精讀',
+    summary: '強化抽象語意、長篇閱讀與高密度表達的掌握能力。',
   },
 ] as const;
 
 export const quizModes = [
   {
-    eyebrow: 'Quiz Mode',
-    title: '單字測驗',
-    text: '適合快速檢查記憶熟悉度，配合複習排程可做短週期反覆練習。',
+    eyebrow: '測驗模式',
+    title: '單字題',
+    text: '適合檢查字義、讀音與例句理解，快速建立基礎記憶。',
   },
   {
-    eyebrow: 'Quiz Mode',
-    title: '文法測驗',
-    text: '用句型與選項題檢查理解，不讓文法只停留在看過規則卻沒有真正使用。',
+    eyebrow: '測驗模式',
+    title: '文法題',
+    text: '透過句型與語境判斷，訓練實際使用時的文法敏感度。',
   },
   {
-    eyebrow: 'Quiz Mode',
-    title: '閱讀測驗',
-    text: '把理解與速度一起拉上來，適合作為直播課後延伸閱讀與應試節奏的補強。',
+    eyebrow: '測驗模式',
+    title: '閱讀題',
+    text: '用段落與短文做理解練習，提升整體閱讀速度與準確度。',
   },
 ] as const;
 
 export const jaeasyApiModules = [
   {
-    title: 'Auth API',
-    text: 'register / login token 流程與密碼雜湊邏輯，原本由 FastAPI + JWT 提供。',
+    title: '帳號模組',
+    text: '處理註冊、登入、密碼重設與會員身份辨識。',
   },
   {
-    title: 'Vocabulary API',
-    text: '按 JLPT 等級列出單字、今日複習清單與評分後的複習更新邏輯。',
+    title: '單字模組',
+    text: '管理 JLPT 分級字彙、例句與單字資料同步。',
   },
   {
-    title: 'Quiz API',
-    text: '依照等級與題型抽題，回傳作答結果與統計數據，適合後續接進站內互動頁。',
+    title: '測驗模組',
+    text: '產生題目、記錄作答與彙整各種測驗結果。',
   },
   {
-    title: 'SRS Service',
-    text: 'SM-2 複習演算法已轉成主站共用模組，後續可直接接資料表或學習紀錄。',
+    title: '複習模組',
+    text: '使用 SRS 方式安排下次複習時間，讓記憶更穩定。',
   },
 ] as const;
 
 export const sampleVocabulary = [
   { word: '勉強', reading: 'べんきょう', meaning: '學習、用功', level: 'N5' as JlptLevel },
-  { word: '理由', reading: 'りゆう', meaning: '理由、原因', level: 'N4' as JlptLevel },
-  { word: '改善', reading: 'かいぜん', meaning: '改善、改進', level: 'N3' as JlptLevel },
-  { word: '把握', reading: 'はあく', meaning: '掌握、理解', level: 'N2' as JlptLevel },
+  { word: '経験', reading: 'けいけん', meaning: '經驗', level: 'N4' as JlptLevel },
+  { word: '改善', reading: 'かいぜん', meaning: '改善', level: 'N3' as JlptLevel },
+  { word: '観察', reading: 'かんさつ', meaning: '觀察', level: 'N2' as JlptLevel },
 ] as const;
 
 export function calculateNextReview(
@@ -154,9 +154,9 @@ export function buildSampleReviewQueue() {
       intervalDays: 0,
     },
     {
-      word: '理由',
-      reading: 'りゆう',
-      meaning: '理由、原因',
+      word: '経験',
+      reading: 'けいけん',
+      meaning: '經驗',
       level: 'N4',
       grade: 4,
       repetitions: 1,
@@ -166,7 +166,7 @@ export function buildSampleReviewQueue() {
     {
       word: '改善',
       reading: 'かいぜん',
-      meaning: '改善、改進',
+      meaning: '改善',
       level: 'N3',
       grade: 3,
       repetitions: 2,
@@ -174,9 +174,9 @@ export function buildSampleReviewQueue() {
       intervalDays: 6,
     },
     {
-      word: '把握',
-      reading: 'はあく',
-      meaning: '掌握、理解',
+      word: '観察',
+      reading: 'かんさつ',
+      meaning: '觀察',
       level: 'N2',
       grade: 2,
       repetitions: 3,

@@ -72,10 +72,10 @@ export default async function JaeasyPage() {
             <div>
               <p className='text-sm font-black uppercase tracking-[0.22em] text-sky-700'>Jaeasy 自學中心</p>
               <h1 className='mt-3 font-["Plus_Jakarta_Sans"] text-4xl font-extrabold tracking-tight text-slate-950 md:text-6xl'>
-                自學中心
+                你的日文學習首頁
               </h1>
               <p className='mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg'>
-                這裡整合你的單字複習、JLPT 測驗、近期作答紀錄與後續學習節奏，登入後就能直接進入自己的自學首頁。
+                在這裡安排今日複習、開始測驗、查看學習記錄，並持續累積自己的 JLPT 字彙與閱讀能力。
               </p>
             </div>
 
@@ -107,31 +107,31 @@ export default async function JaeasyPage() {
                   href='/jaeasy/quiz?level=N5&type=vocab'
                   className='inline-flex rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-50'
                 >
-                  開始 JLPT 測驗
+                  進入 JLPT 測驗
                 </Link>
                 <Link
                   href='/jaeasy/resources'
                   className='inline-flex rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-50'
                 >
-                  學習資源庫
+                  查看學習資源
                 </Link>
               </div>
 
               <div className='mt-8 grid gap-4 md:grid-cols-4'>
-                <MetricCard label='單字總數' value={`${summary.totalVocabulary}`} />
+                <MetricCard label='單字總量' value={`${summary.totalVocabulary}`} />
                 <MetricCard label='追蹤單字' value={`${summary.trackedVocabulary}`} />
                 <MetricCard label='今日待複習' value={`${summary.dueCount}`} />
-                <MetricCard label='最近正確率' value={`${summary.quizStats.accuracy}%`} />
+                <MetricCard label='測驗正確率' value={`${summary.quizStats.accuracy}%`} />
               </div>
             </div>
 
             <aside className='rounded-[1.75rem] bg-[linear-gradient(135deg,#17304d_0%,#0b5cff_100%)] p-6 text-white shadow-[0_24px_60px_rgba(11,92,255,0.22)]'>
-              <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>會員狀態</p>
+              <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>會員資料</p>
               <h2 className='mt-3 text-2xl font-black tracking-tight'>{member.fullName || session.fullName || member.email}</h2>
               <p className='mt-3 text-sm leading-7 text-sky-50/90'>{member.email}</p>
-              <p className='mt-2 text-sm leading-7 text-sky-50/90'>帳號來源：{member.studentSource || 'jaeasy'}</p>
+              <p className='mt-2 text-sm leading-7 text-sky-50/90'>來源：{member.studentSource || 'jaeasy'}</p>
               <p className='mt-6 text-sm leading-7 text-sky-50/90'>
-                今日待複習 {summary.dueCount} 題，追蹤單字 {summary.trackedVocabulary} 個，最近測驗正確率 {summary.quizStats.accuracy}%。
+                你目前有 {summary.dueCount} 個待複習單字，已追蹤 {summary.trackedVocabulary} 個單字，最近測驗正確率為 {summary.quizStats.accuracy}%。
               </p>
             </aside>
           </div>
@@ -143,10 +143,10 @@ export default async function JaeasyPage() {
               <div className='flex flex-wrap items-center justify-between gap-3'>
                 <div>
                   <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>今日複習</p>
-                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>優先處理的複習單字</h2>
+                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>優先處理的單字</h2>
                 </div>
                 <Link href='/jaeasy/review' className='text-sm font-bold text-sky-700 underline underline-offset-4'>
-                  查看複習
+                  前往複習
                 </Link>
               </div>
               <div className='mt-6 grid gap-3'>
@@ -167,7 +167,7 @@ export default async function JaeasyPage() {
                   ))
                 ) : (
                   <div className='rounded-3xl border border-dashed border-slate-200 px-5 py-6 text-sm leading-7 text-slate-600'>
-                    目前沒有待複習題目，可以先去做測驗或繼續練習新的單字。
+                    今天沒有待複習單字，可以去做測驗或繼續瀏覽字庫。
                   </div>
                 )}
               </div>
@@ -177,10 +177,10 @@ export default async function JaeasyPage() {
               <div className='flex flex-wrap items-center justify-between gap-3'>
                 <div>
                   <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>單字分級</p>
-                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>JLPT 單字級別</h2>
+                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>JLPT 字庫概況</h2>
                 </div>
                 <Link href='/jaeasy/quiz?level=N5&type=vocab' className='text-sm font-bold text-sky-700 underline underline-offset-4'>
-                  前往測驗
+                  開始測驗
                 </Link>
               </div>
 
@@ -212,8 +212,8 @@ export default async function JaeasyPage() {
 
           <div className='grid gap-6'>
             <article className='rounded-[2rem] border border-white/70 bg-white/84 p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
-              <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>下一次複習</p>
-              <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>即將到期的單字</h2>
+              <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>接下來的複習</p>
+              <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>排程中的項目</h2>
               <div className='mt-6 grid gap-3'>
                 {upcomingReviews.length > 0 ? (
                   upcomingReviews.map((item) => (
@@ -225,7 +225,7 @@ export default async function JaeasyPage() {
                   ))
                 ) : (
                   <div className='rounded-3xl border border-dashed border-slate-200 px-5 py-6 text-sm leading-7 text-slate-600'>
-                    目前沒有即將到期的單字，先完成今天的複習與測驗就很好了。
+                    目前沒有排程中的複習項目。
                   </div>
                 )}
               </div>
@@ -233,7 +233,7 @@ export default async function JaeasyPage() {
 
             <article className='rounded-[2rem] border border-white/70 bg-white/84 p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
               <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>最近測驗</p>
-              <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>最近作答紀錄</h2>
+              <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>答題紀錄</h2>
               <div className='mt-6 grid gap-3'>
                 {recentAttempts.length > 0 ? (
                   recentAttempts.map((attempt) => (
@@ -256,7 +256,7 @@ export default async function JaeasyPage() {
                   ))
                 ) : (
                   <div className='rounded-3xl border border-dashed border-slate-200 px-5 py-6 text-sm leading-7 text-slate-600'>
-                    目前還沒有作答紀錄，先完成一組測驗就會顯示在這裡。
+                    目前還沒有測驗紀錄，先試著做一份小測驗吧。
                   </div>
                 )}
               </div>

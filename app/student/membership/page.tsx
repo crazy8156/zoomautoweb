@@ -5,32 +5,32 @@ import { getJaeasyMemberProfile, JAEASY_COOKIE_NAME, verifyJaeasySessionToken } 
 
 const plans = [
   {
-    name: '自學會員',
-    badge: '自學會員',
-    price: '月費規劃中',
-    description: '提供單字複習、JLPT 測驗與學習進度追蹤，適合以自學為主的學生。',
-    features: ['Jaeasy 自學中心', '單字複習節奏', '測驗紀錄', '進度追蹤'],
+    name: 'Jaeasy 自學會員',
+    badge: '自學方案',
+    price: '已啟用',
+    description: '提供單字複習、JLPT 測驗、學習記錄與日常自學內容，適合每天持續累積。',
+    features: ['Jaeasy 學習首頁', '單字複習排程', '測驗練習紀錄', '個人學習追蹤'],
   },
   {
-    name: '直播課會員',
-    badge: 'Zoom 課程',
-    price: '課程方案制',
-    description: '適合同時需要 Zoom 課表、課程中心與課後複習的學生。',
-    features: ['課程中心', 'Zoom 上課入口', '我的課表', '課後回自學中心'],
+    name: '直播課程學員',
+    badge: '課程方案',
+    price: '依課程安排',
+    description: '適合有參與直播教學的學生，可查看課程、場次與專屬上課連結。',
+    features: ['課程資訊總覽', 'Zoom 上課入口', '課程中心', '預約與場次安排'],
   },
   {
-    name: '進階會員',
+    name: '整合會員方案',
     badge: '進階方案',
-    price: '即將開放',
-    description: '預留給之後的模擬考、回放、作業與進階會員權限。',
-    features: ['更多題庫權限', '會員升級入口', '回放 / 作業', '後續串金流'],
+    price: '規劃中',
+    description: '未來會把直播課程與 Jaeasy 自學整合成同一套完整學習體驗。',
+    features: ['自學與課程整合', '個人進度同步', '學習成果統整', '更多功能擴充'],
   },
 ];
 
 const roadmap = [
-  '現在已經有學生中心與會員方案入口頁。',
-  '下一步可以接方案資料表、訂單與付款紀錄。',
-  '完成金流串接後，就能依會員方案開放不同權限。',
+  '補上正式會員方案與可視化訂閱狀態。',
+  '整合付款、方案權限與啟用流程。',
+  '讓自學記錄與課程進度可以一起查看。',
 ];
 
 export default async function StudentMembershipPage() {
@@ -52,10 +52,10 @@ export default async function StudentMembershipPage() {
         <header className='rounded-[2rem] border border-white/70 bg-white/88 p-8 shadow-[0_30px_80px_rgba(15,23,42,0.10)] md:p-12'>
           <div className='flex flex-wrap items-center justify-between gap-4'>
             <div>
-              <p className='text-sm font-black uppercase tracking-[0.2em] text-sky-700'>會員方案</p>
-              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>會員方案 / 付費入口</h1>
+              <p className='text-sm font-black uppercase tracking-[0.2em] text-sky-700'>會員資訊</p>
+              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>會員方案與權限</h1>
               <p className='mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg'>
-                這一頁先作為學生端的付費入口骨架。現在已經能清楚展示方案方向，後面接金流時就可以直接延伸。
+                這裡會整理你目前可使用的學習功能、課程權限，以及未來會開放的整合方案。
               </p>
             </div>
             <div className='flex flex-wrap gap-3'>
@@ -69,15 +69,15 @@ export default async function StudentMembershipPage() {
                 href='/student/course-center'
                 className='rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5'
               >
-                去課程中心
+                前往課程中心
               </Link>
             </div>
           </div>
 
           <div className='mt-8 grid gap-4 md:grid-cols-3'>
-            <MetricCard label='會員' value={member.fullName || session.fullName || member.email} />
-            <MetricCard label='目前方案' value='方案規劃中' />
-            <MetricCard label='付費狀態' value='尚未接金流' />
+            <MetricCard label='會員名稱' value={member.fullName || session.fullName || member.email} />
+            <MetricCard label='目前狀態' value='已啟用' />
+            <MetricCard label='整合進度' value='持續建置中' />
           </div>
         </header>
 
@@ -101,18 +101,19 @@ export default async function StudentMembershipPage() {
           </div>
 
           <aside className='rounded-[2rem] bg-[linear-gradient(180deg,#0b5cff_0%,#123f9f_100%)] p-7 text-white shadow-[0_28px_70px_rgba(11,92,255,0.24)]'>
-            <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>付款規劃</p>
-            <h2 className='mt-4 text-2xl font-black tracking-tight'>之後怎麼接正式付費</h2>
+            <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-100'>後續規劃</p>
+            <h2 className='mt-4 text-2xl font-black tracking-tight'>接下來會補上的內容</h2>
             <div className='mt-6 grid gap-3'>
               {roadmap.map((item, index) => (
                 <article key={item} className='rounded-3xl border border-white/12 bg-white/10 p-4'>
-                  <p className='text-xs font-black uppercase tracking-[0.18em] text-sky-100'>第 {index + 1} 步</p>
+                  <p className='text-xs font-black uppercase tracking-[0.18em] text-sky-100'>步驟 {index + 1}</p>
                   <p className='mt-2 text-sm leading-7 text-sky-50/92'>{item}</p>
                 </article>
               ))}
             </div>
             <div className='mt-6 rounded-3xl border border-white/12 bg-white/10 p-4 text-sm leading-7 text-sky-50/92'>
-              目前這頁先當方案入口與金流預留位置。等你要正式接付款，我下一步可以幫你補 `plans / orders / payments / entitlements`。
+              目前這一頁先提供會員狀態與方案說明。之後若要接正式訂閱機制，我們會再補上
+              `plans`、`orders`、`payments`、`entitlements` 這些資料層。
             </div>
           </aside>
         </section>

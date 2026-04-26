@@ -11,10 +11,10 @@ export default function HomePage() {
             <span className='material-symbols-outlined fill text-5xl text-[#003f87]'>developer_board</span>
           </div>
           <h1 className='mt-8 font-["Plus_Jakarta_Sans"] text-5xl font-extrabold tracking-tight text-[#191c1d] md:text-6xl'>
-            ZOOM ELEARNING
+            智慧教學平台
           </h1>
           <p className='mx-auto mt-5 max-w-xl text-lg leading-8 text-[#424752]'>
-            目前首頁先保留兩個主要入口，學生從這裡進入學習平台，教師從這裡進入老師後台管理。
+            整合直播教學、學生預約、課程管理與日文自學內容，讓學生與老師都能在同一個平台完成學習與管理。
           </p>
         </div>
 
@@ -37,7 +37,7 @@ export default function HomePage() {
               </p>
               <div className='mt-10'>
                 <span className='inline-flex w-full items-center justify-center rounded-full bg-[#f3f4f5] px-6 py-4 font-medium text-[#003f87] transition-colors group-hover:bg-[#003f87] group-hover:text-white'>
-                  進入學生入口
+                  前往學生平台
                   <span className='material-symbols-outlined ml-2 text-xl'>arrow_forward</span>
                 </span>
               </div>
@@ -54,15 +54,15 @@ export default function HomePage() {
                 <span className='material-symbols-outlined fill text-3xl text-[#003f87]'>admin_panel_settings</span>
               </div>
               <h2 className='font-["Plus_Jakarta_Sans"] text-3xl font-bold text-[#191c1d]'>
-                教師登入
-                <span className='mt-2 block text-xl font-medium text-[#424752]'>進入老師後台管理</span>
+                老師後台
+                <span className='mt-2 block text-xl font-medium text-[#424752]'>進入管理中心</span>
               </h2>
               <p className='mt-4 flex-grow leading-8 text-[#424752]'>
-                從這裡管理 Zoom 課程、學生名單、自學平台內容，以及整體教學流程。
+                從這裡管理直播課程、學生名單、自學內容，以及整體教學流程。
               </p>
               <div className='mt-10'>
                 <span className='inline-flex w-full items-center justify-center rounded-full bg-[#f3f4f5] px-6 py-4 font-medium text-[#003f87] transition-colors group-hover:bg-[#003f87] group-hover:text-white'>
-                  進入教師入口
+                  前往老師後台
                   <span className='material-symbols-outlined ml-2 text-xl'>arrow_forward</span>
                 </span>
               </div>
@@ -73,21 +73,21 @@ export default function HomePage() {
         <div className='mt-16 text-center'>
           <div className='inline-flex items-center text-sm text-[#424752] transition-colors hover:text-[#003f87]'>
             <span className='material-symbols-outlined mr-2 text-lg'>help_outline</span>
-            如果登入或帳號有問題，請聯絡管理者協助處理。
+            若你是第一次使用，請先從學生登入建立或啟用帳號。
           </div>
         </div>
       </section>
 
       <footer className='relative z-10 border-t-0 bg-slate-50 py-10'>
         <div className='mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-12 text-sm md:flex-row'>
-          <div className='text-lg font-bold text-slate-900'>ZOOM ELEARNING</div>
-          <div className='text-slate-500'>© 2026 Zoom eLearning 教學平台。</div>
+          <div className='text-lg font-bold text-slate-900'>智慧教學平台</div>
+          <div className='text-slate-500'>© 2026 智慧教學平台</div>
           <nav className='flex flex-wrap gap-6'>
             <Link className='text-slate-500 transition-colors hover:text-blue-600' href='/jaeasy/login?next=/student'>
-              學生入口
+              學生登入
             </Link>
             <Link className='text-slate-500 transition-colors hover:text-blue-600' href='/admin/login'>
-              教師入口
+              老師後台
             </Link>
           </nav>
         </div>

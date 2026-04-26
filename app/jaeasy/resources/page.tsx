@@ -10,11 +10,11 @@ export default function JaeasyResourcesPage() {
         <header className='rounded-[2rem] border border-white/70 bg-white/88 p-8 shadow-[0_30px_80px_rgba(15,23,42,0.10)] md:p-12'>
           <div className='flex flex-wrap items-center justify-between gap-4'>
             <div>
-              <p className='text-sm font-black uppercase tracking-[0.22em] text-sky-700'>Jaeasy 資源庫</p>
-              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>自學資源庫</h1>
+              <p className='text-sm font-black uppercase tracking-[0.22em] text-sky-700'>自學資源</p>
+              <h1 className='mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl'>Jaeasy 資源整理</h1>
               <p className='mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg'>
-                這裡先把你的 NotebookLM 資料整理成可直接使用的外部資源庫。學生可以從這裡找閱讀、聽力、文法、敬語工具與影片，
-                後續我們也可以再把其中的內容拆成單字、文法題、閱讀題和每日文章。
+                這裡收集了適合搭配 Jaeasy 使用的日文學習網站、影音頻道、文章整理與延伸工具，
+                方便你在課後持續練習與補充。
               </p>
             </div>
             <div className='flex flex-wrap gap-3'>
@@ -22,33 +22,31 @@ export default function JaeasyResourcesPage() {
                 href='/jaeasy'
                 className='rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50'
               >
-                回自學中心
+                回 Jaeasy 首頁
               </Link>
               <Link
                 href='/student'
                 className='rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5'
               >
-                回學生中心
+                前往學生中心
               </Link>
             </div>
           </div>
 
           <div className='mt-8 grid gap-4 md:grid-cols-3'>
             <MetricCard label='資源分類' value={`${summary.categoryCount}`} />
-            <MetricCard label='總連結數' value={`${summary.resourceCount}`} />
-            <MetricCard label='適用方向' value='單字 / 文法 / 閱讀 / 聽力' />
+            <MetricCard label='收錄連結' value={`${summary.resourceCount}`} />
+            <MetricCard label='適用內容' value='單字 / 文法 / 閱讀 / 聽力' />
           </div>
         </header>
 
         <section className='mt-8 grid gap-6'>
           {jaeasyResourceCategories.map((category) => (
             <article key={category.key} className='rounded-[2rem] border border-white/70 bg-white/84 p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)]'>
-              <div className='flex flex-wrap items-center justify-between gap-3'>
-                <div>
-                  <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>{category.resources.length} 筆資源</p>
-                  <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>{category.title}</h2>
-                  <p className='mt-2 text-sm leading-7 text-slate-600'>{category.summary}</p>
-                </div>
+              <div>
+                <p className='text-sm font-black uppercase tracking-[0.18em] text-sky-700'>{category.resources.length} 個推薦</p>
+                <h2 className='mt-2 text-2xl font-black tracking-tight text-slate-950'>{category.title}</h2>
+                <p className='mt-2 text-sm leading-7 text-slate-600'>{category.summary}</p>
               </div>
 
               <div className='mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3'>
@@ -62,7 +60,7 @@ export default function JaeasyResourcesPage() {
                   >
                     <p className='text-lg font-black tracking-tight text-slate-950'>{resource.title}</p>
                     <p className='mt-3 text-sm leading-7 text-slate-600'>{resource.description}</p>
-                    <p className='mt-4 text-xs font-bold uppercase tracking-[0.18em] text-sky-700'>開啟資源</p>
+                    <p className='mt-4 text-xs font-bold uppercase tracking-[0.18em] text-sky-700'>前往查看</p>
                   </a>
                 ))}
               </div>

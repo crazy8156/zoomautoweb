@@ -6,4 +6,4 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=/opt/zoom-elearning-web
-ExecStart=/opt/zoom-elearning-web/scripts/deploy-from-github.sh
+ExecStart=/bin/bash /opt/zoom-elearning-web/scripts/deploy-from-github.sh

@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Course, formatCurrency } from './lib/domain';
-import { supabase } from './lib/supabase';
+import { Course, formatCurrency } from './app/lib/domain';
+import { supabase } from './app/lib/supabase';
 
 const navItems = [
   { label: '教學方案', href: '#overview' },

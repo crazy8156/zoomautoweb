@@ -6,14 +6,15 @@ export default function HomePage() {
       <div className='pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(0,63,135,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,63,135,0.05)_1px,transparent_1px)] bg-[size:40px_40px]' />
 
       <section className='mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 py-14'>
-        <div className='max-w-2xl text-center'>
-          <div className='mx-auto inline-flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_rgba(0,63,135,0.08)]'>
-            <span className='material-symbols-outlined fill text-5xl text-[#003f87]'>developer_board</span>
+        <div className='max-w-3xl text-center'>
+          <div className='mx-auto inline-flex h-24 w-24 items-center justify-center rounded-full bg-white text-3xl font-black text-[#003f87] shadow-[0_8px_24px_rgba(0,63,135,0.08)]'>
+            智
           </div>
-          <h1 className='mt-8 font-["Plus_Jakarta_Sans"] text-5xl font-extrabold tracking-tight text-[#191c1d] md:text-6xl'>
+          <p className='mt-8 text-sm font-black uppercase tracking-[0.22em] text-[#115cb9]'>智慧學習入口</p>
+          <h1 className='mt-4 font-["Plus_Jakarta_Sans"] text-5xl font-extrabold tracking-tight text-[#191c1d] md:text-6xl'>
             智慧教學平台
           </h1>
-          <p className='mx-auto mt-5 max-w-xl text-lg leading-8 text-[#424752]'>
+          <p className='mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#424752]'>
             整合直播教學、學生預約、課程管理與日文自學內容，讓學生與老師都能在同一個平台完成學習與管理。
           </p>
         </div>
@@ -25,8 +26,8 @@ export default function HomePage() {
           >
             <div className='absolute left-0 top-0 h-2 w-full rounded-t-[2rem] bg-gradient-to-r from-[#003f87] to-[#0056b3]' />
             <div className='flex h-full flex-col'>
-              <div className='mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-[#d1e4fd]'>
-                <span className='material-symbols-outlined fill text-3xl text-[#003f87]'>school</span>
+              <div className='mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-[#d1e4fd] text-2xl font-black text-[#003f87]'>
+                學
               </div>
               <h2 className='font-["Plus_Jakarta_Sans"] text-3xl font-bold text-[#191c1d]'>
                 學生登入
@@ -38,7 +39,7 @@ export default function HomePage() {
               <div className='mt-10'>
                 <span className='inline-flex w-full items-center justify-center rounded-full bg-[#f3f4f5] px-6 py-4 font-medium text-[#003f87] transition-colors group-hover:bg-[#003f87] group-hover:text-white'>
                   前往學生平台
-                  <span className='material-symbols-outlined ml-2 text-xl'>arrow_forward</span>
+                  <span className='ml-2 text-lg'>→</span>
                 </span>
               </div>
             </div>
@@ -50,8 +51,8 @@ export default function HomePage() {
           >
             <div className='absolute left-0 top-0 h-2 w-full rounded-t-[2rem] bg-gradient-to-r from-[#003f87] to-[#0056b3]' />
             <div className='flex h-full flex-col'>
-              <div className='mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-[#d1e4fd]'>
-                <span className='material-symbols-outlined fill text-3xl text-[#003f87]'>admin_panel_settings</span>
+              <div className='mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-[#d1e4fd] text-2xl font-black text-[#003f87]'>
+                師
               </div>
               <h2 className='font-["Plus_Jakarta_Sans"] text-3xl font-bold text-[#191c1d]'>
                 老師後台
@@ -63,7 +64,7 @@ export default function HomePage() {
               <div className='mt-10'>
                 <span className='inline-flex w-full items-center justify-center rounded-full bg-[#f3f4f5] px-6 py-4 font-medium text-[#003f87] transition-colors group-hover:bg-[#003f87] group-hover:text-white'>
                   前往老師後台
-                  <span className='material-symbols-outlined ml-2 text-xl'>arrow_forward</span>
+                  <span className='ml-2 text-lg'>→</span>
                 </span>
               </div>
             </div>
@@ -72,8 +73,8 @@ export default function HomePage() {
 
         <div className='mt-16 text-center'>
           <div className='inline-flex items-center text-sm text-[#424752] transition-colors hover:text-[#003f87]'>
-            <span className='material-symbols-outlined mr-2 text-lg'>help_outline</span>
-            若你是第一次使用，請先從學生登入建立或啟用帳號。
+            <span className='mr-2 text-base'>•</span>
+            如果是第一次使用，請先從學生登入入口建立或登入會員帳號。
           </div>
         </div>
       </section>

@@ -7,3 +7,4 @@ Wants=network-online.target
 Type=oneshot
 WorkingDirectory=/opt/zoom-elearning-web
 ExecStart=/bin/bash /opt/zoom-elearning-web/scripts/deploy-from-github.sh
+TimeoutStartSec=900

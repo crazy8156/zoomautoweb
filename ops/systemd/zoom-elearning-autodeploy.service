@@ -6,5 +6,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=/opt/zoom-elearning-web
+Environment=HOME=/root
+Environment=PM2_HOME=/root/.pm2
 ExecStart=/bin/bash /opt/zoom-elearning-web/scripts/deploy-from-github.sh
 TimeoutStartSec=900

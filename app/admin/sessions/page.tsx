@@ -160,6 +160,21 @@ function normalizeRegistrantList(registrants: { email?: string; first_name?: str
     .filter((item): item is ZoomRegistrantSummary => Boolean(item));
 }
 
+async function mapWithConcurrency<T, R>(items: T[], limit: number, mapper: (item: T, index: number) => Promise<R>) {
+  const results = new Array<R>(items.length);
+  let nextIndex = 0;
+  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (nextIndex < items.length) {
+      const currentIndex = nextIndex;
+      nextIndex += 1;
+      results[currentIndex] = await mapper(items[currentIndex], currentIndex);
+    }
+  });
+
+  await Promise.all(workers);
+  return results;
+}
+
 async function upsertStoredInvitees(meetingId: number, inviteeEmails: string[]) {
   if (inviteeEmails.length === 0) return;
 
@@ -563,8 +578,8 @@ export default async function AdminSessionsPage({ searchParams }: { searchParams
 
   const expandedZoomMeetings: ZoomCalendarItem[] = [];
   const [meetingDetails, meetingRegistrants] = await Promise.all([
-    Promise.all(zoomMeetings.map((meeting) => getZoomMeetingById(meeting.id))),
-    Promise.all(zoomMeetings.map((meeting) => listZoomMeetingRegistrants(meeting.id))),
+    mapWithConcurrency(zoomMeetings, 4, (meeting) => getZoomMeetingById(meeting.id)),
+    mapWithConcurrency(zoomMeetings, 2, (meeting) => listZoomMeetingRegistrants(meeting.id)),
   ]);
 
   for (const [index, meeting] of zoomMeetings.entries()) {

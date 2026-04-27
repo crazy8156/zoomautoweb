@@ -416,6 +416,14 @@ export async function listZoomMeetingRegistrants(meetingId: string | number): Pr
     return [];
   }
 
+  if (response.status === 429) {
+    meetingRegistrantCache.set(cacheKey, {
+      value: [],
+      expiresAt: Date.now() + 15 * 1000,
+    });
+    return [];
+  }
+
   if (!response.ok) {
     const message = await response.text();
     if (

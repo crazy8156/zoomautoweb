@@ -192,6 +192,18 @@ select {
   backdrop-filter: blur(10px);
 }
 
+.admin-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-panel-cta {
+  flex-shrink: 0;
+}
+
 .admin-panel h2 {
   color: var(--admin-ink);
 }
@@ -261,5 +273,18 @@ select {
   .admin-main-grid.sidebar,
   .admin-grid-buttons.two {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-panel-head,
+  .admin-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-panel-cta,
+  .admin-actions > * {
+    width: 100%;
   }
 }

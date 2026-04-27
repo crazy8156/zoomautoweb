@@ -67,7 +67,7 @@ export default async function AdminPage() {
             <p className='admin-kicker'>老師後台管理</p>
             <h1 className='admin-title'>老師後台管理</h1>
             <p className='admin-subtitle'>
-              這裡是整個教學平台的管理入口，會把 Zoom 課程、自學中心、學生主名單與教務資料集中在同一個後台。
+              這裡是整個教學平台的管理入口，會把 Zoom 課程、自學中心、學生名單與教務資料集中在同一個後台。
             </p>
           </div>
           <div className='admin-actions'>
@@ -83,13 +83,13 @@ export default async function AdminPage() {
 
       <section className='admin-main-grid two'>
         <article className='admin-panel'>
-          <div className='admin-topbar'>
+          <div className='admin-panel-head'>
             <div>
               <p className='admin-kicker'>Zoom 教學端</p>
               <h2 className='text-3xl font-black tracking-tight'>課程中心</h2>
               <p className='admin-subtitle'>管理 Zoom 課程、排程場次、學生課表與日曆同步。</p>
             </div>
-            <Link href='/admin/course-center' className='admin-link-pill primary'>
+            <Link href='/admin/course-center' className='admin-link-pill primary admin-panel-cta'>
               前往課程中心
             </Link>
           </div>
@@ -118,13 +118,13 @@ export default async function AdminPage() {
         </article>
 
         <article className='admin-panel'>
-          <div className='admin-topbar'>
+          <div className='admin-panel-head'>
             <div>
               <p className='admin-kicker'>自學教學端</p>
               <h2 className='text-3xl font-black tracking-tight'>自學中心</h2>
               <p className='admin-subtitle'>管理自學會員、字庫題庫、測驗紀錄與學生自學數據。</p>
             </div>
-            <Link href='/admin/jaeasy' className='admin-link-pill primary'>
+            <Link href='/admin/jaeasy' className='admin-link-pill primary admin-panel-cta'>
               前往自學中心後台
             </Link>
           </div>

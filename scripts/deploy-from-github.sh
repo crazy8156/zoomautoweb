@@ -30,6 +30,9 @@ if [ "$needs_npm_ci" -eq 1 ]; then
   npm ci
 fi
 
+# Remove stale Next build artifacts so HTML and asset chunk names stay in sync.
+rm -rf .next
+
 npm run build
 pm2 restart "$PM2_APP_NAME" --update-env
 
